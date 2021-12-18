@@ -1,0 +1,103 @@
+.selector {
+  list-style-type: none;
+  margin: 10px 0 0 0;
+  padding: 0;
+}
+
+.selector li {
+  float: left;
+  margin: 0 5px 0 0;
+  width: 140px;
+  height: 40px;
+  position: relative;
+}
+.selector.botsCount li {
+  width: 40px;
+}
+.selector li.depo {
+  width: 100px;
+}
+.selector li.notStopClosePos {
+  width: 165px;
+}
+
+.selector label,
+.selector input {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.selector input[type="radio"] {
+  opacity: 0.01;
+  z-index: 100;
+}
+
+.selector input[type="radio"]:checked + label,
+.Checked + label {
+  background: #ddd;
+}
+
+.selector label {
+  padding: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  z-index: 90;
+}
+
+.selector label:hover {
+  background: #ddd;
+}
+#coinsListsSelect {
+  margin-top: 5px;
+}
+.avada article,
+.avada-tab article {
+  border-bottom: 1px solid #e9ecef;
+}
+.myDivModal button {
+  margin: 5px 3px;
+}
+.m-tab.avada-link--active {
+  color: orangered !important;
+}
+.grid-settings-dialog__cntr > label {
+  margin-top: 0.5em;
+}
+.noForget {
+  font: italic;
+  text-align: center;
+}
+.avada-pane-tabs {
+  margin: 5px 5px;
+  /* display: grid;
+  grid-template-columns: auto auto;
+  justify-content: center; */
+}
+.avada-modal {
+  min-width: 670px;
+}
+.modal-body.avada {
+  padding: 0 1em;
+}
+.b-avada.avada-link.m-tab.m-tab--small {
+  font-weight: 700;
+}
+.lbl_botsCount {
+  max-width: 40px;
+}
+#botsCount,
+#flexStopPercent {
+  margin-bottom: 0.5rem;
+}
+.lbl-wrap label {
+  margin-bottom: 0px;
+}
+.lbl-wrap {
+  display: grid;
+  align-items: center;
+  margin-right: 20px;
+}
