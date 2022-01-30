@@ -14,7 +14,6 @@ function isBotsPageShow() {
 
 function startPage() {
   setTimeout(() => {
-    console.log("isBotsPageShow: ", isBotsPageShow());
     if (isBotsPageShow()) {
       showBotsEdit();
     }

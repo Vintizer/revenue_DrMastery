@@ -14,7 +14,7 @@ import {
 function getCheckedBots() {
   return $("tbody [id^='rb_chk']:visible").filter((_i, chk) => $(chk).is(":checked"));
 }
-async function editBotAsync({ checkboxId, profit, trailing = null, leverage, wallet = null }) {
+async function editBotAsync({ checkboxId, profit, trailing, leverage, wallet = null }) {
   const $bot = $(`#${checkboxId}`).closest("tr").find(".rb-action-btn-edit");
   $bot.click();
   await waitAsync(() => isPageReady() && $("#newBotName").is(":visible"));
@@ -24,6 +24,11 @@ async function editBotAsync({ checkboxId, profit, trailing = null, leverage, wal
   }
   if (profit != null) {
     fillSelect($("select#profit"), profit);
+    await timeoutAsync(1000);
+  }
+  if (trailing != null) {
+    fillCheckbox($("#trailingstop_enabled"), true);
+    fillSelect($("#trailingstop_rate"), trailing);
     await timeoutAsync(1000);
   }
   $("button:contains('Обновить настройки')").click();
@@ -42,9 +47,37 @@ function subscribeLinkChange() {
     $("#create").removeClass("avada-link--active");
     $(`#${pageType}`).addClass("avada-link--active");
     subscribeLinkChange();
+    subscribeBaseButtons();
   });
 }
-async function showModal(checkedBoxes: string[]) {
+function subscribeBaseButtons() {
+  $("#closeOpenedDialog").click(() => {
+    $("#modal-edit-bots-dialog").remove();
+  });
+  $("#editBots").click(async () => {
+    const profit = $("#profitSelect").val() || null;
+    const leverage = $("#leverageSelect").val() || null;
+    const trailing = $("#trailingSelect").val() || null;
+    if (profit == null && leverage == null && trailing == null) {
+      alert("Не выбрано ни одно значение");
+      return;
+    }
+    const checkedBots = getCheckedBots();
+    const checkedBoxes: string[] = [];
+    for (const chkBot of checkedBots.toArray()) {
+      checkedBoxes.push($(chkBot).attr("id") || "");
+    }
+    if (checkedBoxes.length > 0) {
+      $("#modal-edit-bots-dialog").remove();
+      for (const checkboxId of checkedBoxes) {
+        await editBotAsync({ checkboxId, profit, leverage, trailing });
+      }
+    } else {
+      alert("Выберите хоть одного бота для редактирования");
+    }
+  });
+}
+async function showModal() {
   const modal = getModal();
   $("#gridSettingsundefined").after(modal);
   subscribeLinkChange();
@@ -56,43 +89,14 @@ async function showModal(checkedBoxes: string[]) {
       $("article:contains('Изменить список монет')").after($coinsLists);
     }
   });
-  $("#closeOpenedDialog").click(() => {
-    $("#modal-edit-bots-dialog").remove();
-  });
-  $("#editBots").click(async () => {
-    const profit = $("#profitSelect").val() || null;
-    const leverage = $("#leverageSelect").val() || null;
-    if (profit == null && leverage == null) {
-      alert("Не выбрано ни одно значение");
-      return;
-    }
-    $("#modal-edit-bots-dialog").remove();
-    for (const checkboxId of checkedBoxes) {
-      if (profit != null || leverage != null) {
-        await editBotAsync({ checkboxId, profit, leverage });
-      }
-    }
-  });
+  subscribeBaseButtons();
 }
 
 async function prepareShowModal() {
-  const checkedBots = getCheckedBots();
-  const checkedBoxes: string[] = [];
-  for (const chkBot of checkedBots.toArray()) {
-    checkedBoxes.push($(chkBot).attr("id") || "");
-  }
-  // if (checkedBots.length === 0) {
-  //   alert("Не выбран ни один бот");
-  // } else
   if ($("button:contains('Обновить настройки')").is(":visible")) {
     alert("Пожалуйста закончите редактирование бота");
   } else {
-    if (checkedBoxes.length > 10) {
-      alert(
-        "Будьте аккуратние, бывали случаи что при большом количестве редактируемых ботов, Revenue на 30 минут банил аккаунт за большую активность, так как бот делает всё быстрее чем руками"
-      );
-    }
-    showModal(checkedBoxes);
+    showModal();
   }
 }
 

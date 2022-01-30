@@ -112,9 +112,9 @@ export function getControlModal() {
                 <label>Изменить трейлинг</label>
                 <select name="select" id="trailingSelect">
                   <option selected value="">----</option>
-                  <option value="01">0.1%</option>
-                  <option value="01">0.2%</option>
-                  <option value="01">0.3%</option>
+                  <option value="0.1">0.1%</option>
+                  <option value="0.2">0.2%</option>
+                  <option value="0.3">0.3%</option>
                 </select>
               </div>
             </div>
