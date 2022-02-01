@@ -1,4 +1,5 @@
 import { getModal } from "./modals/index";
+import { createBotsAsync } from "./modals/createBots";
 import { getCoinsLists } from "./modals/coinsLists";
 import {
   editSlider,
@@ -50,6 +51,7 @@ function subscribeLinkChange() {
     subscribeBaseButtons();
   });
 }
+
 function subscribeBaseButtons() {
   $("#closeOpenedDialog").click(() => {
     $("#modal-edit-bots-dialog").remove();
@@ -76,6 +78,33 @@ function subscribeBaseButtons() {
       alert("Выберите хоть одного бота для редактирования");
     }
   });
+  $("#createBots").click(async () => {
+    const depo = Number($("[name='depo']:checked").attr("id"));
+    const coinsList = $("[name='coinsList']:checked").attr("id");
+    const strategy = $("[name='strategy']:checked").attr("id");
+    const algo = $("[name='algo']:checked").attr("id");
+    const botsCount = Number($("#botsCount").val() || $("[name='botsCount']:checked").attr("id"));
+    const tradeType = $("[name='tradeType']:checked").attr("id");
+    if (
+      depo == null ||
+      coinsList == null ||
+      strategy == null ||
+      algo == null ||
+      botsCount == null ||
+      tradeType == null
+    ) {
+      alert("Выберите, пожалуйста, все характеристики");
+      return;
+    }
+    await createBotsAsync({
+      depo,
+      coinsList,
+      strategy,
+      algo,
+      botsCount,
+      tradeType,
+    });
+  });
 }
 async function showModal() {
   const modal = getModal();
@@ -95,7 +124,7 @@ async function showModal() {
 async function prepareShowModal() {
   if ($("button:contains('Обновить настройки')").is(":visible")) {
     alert("Пожалуйста закончите редактирование бота");
-  } else {
+  } else if ($("#modal-edit-bots-dialog").length === 0) {
     showModal();
   }
 }
