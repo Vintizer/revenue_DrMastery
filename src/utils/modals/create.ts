@@ -2,11 +2,19 @@ export function getCreateModal() {
   function getDepo() {
     return `
             <article slot="section-body">
-                <div class="grid-settings-dialog__cntr">
+                <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
                     <div class="lbl-wrap">
                         <label>Размер депозита</label>
                     </div>
                     <ul class="selector">
+                        <li class='depo'>
+                            <input type="radio" id="30" name="depo" />
+                            <label for="30">$30</label>
+                        </li>
+                        <li class='depo'>
+                            <input type="radio" id="50" name="depo" />
+                            <label for="50">$50</label>
+                        </li>
                         <li class='depo'>
                             <input type="radio" id="100" name="depo" />
                             <label for="100">$100</label>
@@ -39,7 +47,7 @@ export function getCreateModal() {
   function getCoinsList() {
     return `
         <article slot="section-body">
-            <div class="grid-settings-dialog__cntr">
+            <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
                 <div class="lbl-wrap">
                     <label>Список монет</label>
                 </div>
@@ -63,7 +71,7 @@ export function getCreateModal() {
   }
   function getStrategy() {
     return `<article slot="section-body">
-            <div class="grid-settings-dialog__cntr">
+            <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
                 <div class="lbl-wrap">
                     <label>Стратегия</label>
                 </div>
@@ -76,32 +84,20 @@ export function getCreateModal() {
                         <input type="radio" id="front2" name="strategy" />
                         <label for="front2">Front2</label>
                     </li>
-                    <li>
-                        <input type="radio" id="front3" name="strategy" />
-                        <label for="front3">Front3</label>
-                    </li>
                 </ul>
             </div>
         </article>`;
   }
   function getAlgo() {
     return `<article slot="section-body">
-            <div class="grid-settings-dialog__cntr">
+            <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
                 <div class="lbl-wrap">
                     <label>Алгоритм</label>
                 </div>
                 <ul class="selector">
                     <li>
-                        <input type="radio" id="F1" name="algo" />
+                        <input type="radio" id="F1" name="algo" checked/>
                         <label for="F1">F1</label>
-                    </li>
-                    <li>
-                        <input type="radio" id="F1.2" name="algo" />
-                        <label for="F1.2">F1.2</label>
-                    </li>
-                    <li>
-                        <input type="radio" id="F1.3" name="algo" />
-                        <label for="F1.3">F1.3</label>
                     </li>
                 </ul>
             </div>
@@ -109,7 +105,7 @@ export function getCreateModal() {
   }
   function getBotsCount() {
     return `        <article slot="section-body">
-            <div class="grid-settings-dialog__cntr">
+            <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
                 <div class="lbl-wrap">
                     <label>Количество ботов</label>
                 </div>
@@ -143,7 +139,7 @@ export function getCreateModal() {
   }
   function getTradeType() {
     return `        <article slot="section-body">
-            <div class="grid-settings-dialog__cntr">
+            <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
                 <div class="lbl-wrap">
                     <label>Тип торговли</label>
                 </div>
@@ -160,8 +156,29 @@ export function getCreateModal() {
             </div>
         </article>`;
   }
+  function getLeverage() {
+    return `        <article slot="section-body">
+            <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
+                <div class="lbl-wrap">
+                    <label>Плечо</label>
+                </div>
+                <ul class="selector">
+                    <li>
+                        <input type="radio" id="20x" name="leverageAmount" />
+                        <label for="20x">20x</label>
+                    </li>
+                    <li>
+                        <input type="radio" id="50x" name="leverageAmount" />
+                        <label for="50x">50x</label>
+                    </li>
+                </ul>
+            </div>
+        </article>`;
+  }
   return `
     <div class="modal-body avada">
+        ${getStrategy()}
+        ${getLeverage()}
         ${getDepo()}
         ${getCoinsList()}
         ${getAlgo()}

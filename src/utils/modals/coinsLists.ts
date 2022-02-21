@@ -1,7 +1,7 @@
 export function getCoinsLists() {
   return `
       <article slot="section-body" id="coinsListsSelect">
-            <div class="grid-settings-dialog__cntr">
+            <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
                 <ul class="selector">
                     <li>
                         <input type="radio" id="safe" name="coinsList" />

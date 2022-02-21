@@ -1,34 +1,38 @@
 import { Wallet } from "../interfaces";
 
-export const wallets: Wallet[] = [
-  {
-    depo: 100,
-    wallet: 7.5,
-    leverage: 20,
-  },
-  {
-    depo: 200,
-    wallet: 15,
-    leverage: 20,
-  },
-  {
-    depo: 300,
-    wallet: 22.5,
-    leverage: 20,
-  },
-  {
-    depo: 500,
-    wallet: 37.5,
-    leverage: 20,
-  },
-  {
-    depo: 700,
-    wallet: 50,
-    leverage: 20,
-  },
-  {
-    depo: 1000,
-    wallet: 75,
-    leverage: 20,
-  },
+export const walletsFront1: Wallet[] = [
+  { depo: 30, wallet: 7.5, leverage: 20 },
+  { depo: 50, wallet: 7.5, leverage: 20 },
+  { depo: 100, wallet: 7.5, leverage: 20 },
+  { depo: 200, wallet: 15, leverage: 20 },
+  { depo: 300, wallet: 22.5, leverage: 20 },
+  { depo: 500, wallet: 37.5, leverage: 20 },
+  { depo: 700, wallet: 50, leverage: 20 },
+  { depo: 1000, wallet: 50, leverage: 20 },
+  { depo: 30, wallet: 3, leverage: 50 },
+  { depo: 50, wallet: 3, leverage: 50 },
+  { depo: 100, wallet: 3, leverage: 50 },
+  { depo: 200, wallet: 6, leverage: 50 },
+  { depo: 300, wallet: 9, leverage: 50 },
+  { depo: 500, wallet: 15, leverage: 50 },
+  { depo: 700, wallet: 20, leverage: 50 },
+  { depo: 1000, wallet: 20, leverage: 50 },
+];
+export const walletsFront2: Wallet[] = [
+  { depo: 30, wallet: 7.5, leverage: 20 },
+  { depo: 50, wallet: 7.5, leverage: 20 },
+  { depo: 100, wallet: 7.5, leverage: 20 },
+  { depo: 200, wallet: 7.5, leverage: 20 },
+  { depo: 300, wallet: 7.5, leverage: 20 },
+  { depo: 500, wallet: 7.5, leverage: 20 },
+  { depo: 700, wallet: 15, leverage: 20 },
+  { depo: 1000, wallet: 15, leverage: 20 },
+  { depo: 30, wallet: 3, leverage: 50 },
+  { depo: 50, wallet: 3, leverage: 50 },
+  { depo: 100, wallet: 3, leverage: 50 },
+  { depo: 200, wallet: 3, leverage: 50 },
+  { depo: 300, wallet: 3, leverage: 50 },
+  { depo: 500, wallet: 3, leverage: 50 },
+  { depo: 700, wallet: 6, leverage: 50 },
+  { depo: 1000, wallet: 6, leverage: 50 },
 ];

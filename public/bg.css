@@ -101,3 +101,15 @@
   align-items: center;
   margin-right: 20px;
 }
+
+.grid-settings-dialog__cntr_avada {
+  justify-content: flex-start !important;
+  margin-left: 25px !important;
+}
+.bl-list {
+  display: flex;
+}
+.bl-list > textarea {
+  margin-right: 20px;
+  min-width: 350px;
+}

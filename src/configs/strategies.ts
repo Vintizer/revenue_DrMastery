@@ -5,8 +5,8 @@ const f1long = {
     cover: "49",
     indent: "0.04",
     rateMode: "sell",
-    matrixName: "DrMasteryFRONT1",
-    isPartOrders: false,
+    matrixName: "FRONT1_long",
+    isPartOrders: true,
     partOrders: "1",
     isUnstopable: false,
     isRestruct: false,
@@ -25,7 +25,7 @@ const f1long = {
     logarithmic_factor: "1.6",
     isLimitEnabled: false,
     isFixPart: false,
-    autorestart: "global",
+    autorestart: "enabled",
   },
   switchPart: {
     isSwitchTp: true,
@@ -169,8 +169,10 @@ const f1long = {
   filterPart: {
     isStartFilters: true,
     startFilters: [
-      { filterType: "rsi:rsi 6h-15m:value", filterOpVal: "<", filterVal: "25", filterAddData: "8" },
-      { filterType: "cci:cci 6h-15m:value", filterOpVal: "<", filterVal: "-125", filterAddData: "20" },
+      { filterType: "rsi:rsi 3h-1m:value", filterOpVal: "<", filterVal: "40", filterAddData: "8" },
+      { filterType: "rsi:rsi 3h-5m:value", filterOpVal: "<", filterVal: "45", filterAddData: "8" },
+      { filterType: "rsi:rsi 6h-15m:value", filterOpVal: "<", filterVal: "50", filterAddData: "8" },
+      { filterType: "rsi:rsi 6h-30m:value", filterOpVal: "<", filterVal: "55", filterAddData: "8" },
     ],
   },
   extBotConfig: {
@@ -179,7 +181,7 @@ const f1long = {
     positionmode: "1",
     positionmode_oneposition: true,
     positionmode_reduce: true,
-    trailingstop_enabled: true,
+    trailingstop_enabled: false,
     trailingstop_rate: "0.1",
   },
 };
@@ -188,7 +190,7 @@ const f1short = {
     cover: "73",
     indent: "0.04",
     rateMode: "buy",
-    matrixName: "DrMasteryFRONT1",
+    matrixName: "FRONT1_short",
     isPartOrders: true,
     partOrders: "1",
     isUnstopable: false,
@@ -208,7 +210,7 @@ const f1short = {
     logarithmic_factor: "1.5",
     isLimitEnabled: false,
     isFixPart: false,
-    autorestart: "global",
+    autorestart: "enabled",
   },
   switchPart: {
     isSwitchTp: true,
@@ -352,17 +354,20 @@ const f1short = {
   filterPart: {
     isStartFilters: true,
     startFilters: [
-      { filterType: "rsi:rsi 6h-15m:value", filterOpVal: ">", filterVal: "75", filterAddData: "8" },
-      { filterType: "cci:cci 6h-15m:value", filterOpVal: ">", filterVal: "125", filterAddData: "20" },
+      { filterType: "rsi:rsi 3h-1m:value", filterOpVal: ">", filterVal: "55", filterAddData: "8" },
+      { filterType: "rsi:rsi 3h-5m:value", filterOpVal: ">", filterVal: "50", filterAddData: "8" },
+      { filterType: "rsi:rsi 6h-15m:value", filterOpVal: ">", filterVal: "45", filterAddData: "8" },
+      { filterType: "rsi:rsi 6h-30m:value", filterOpVal: ">", filterVal: "40", filterAddData: "8" },
     ],
   },
+
   extBotConfig: {
     isScalp: false,
     leverage: "1",
     positionmode: "1",
     positionmode_oneposition: true,
     positionmode_reduce: true,
-    trailingstop_enabled: true,
+    trailingstop_enabled: false,
     trailingstop_rate: "0.1",
   },
 };

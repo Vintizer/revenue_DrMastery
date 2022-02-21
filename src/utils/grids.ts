@@ -1,4 +1,5 @@
-import { getSumOfArray, setValue } from "../utils/helpers";
+import { getSumOfArray, setValue } from "../utils/modals/pageFill";
+
 export function fillGrid(ordersCount, martin) {
   function getOrdersGrid(ordLength, martinVal) {
     const ordersGrid: number[] = [];

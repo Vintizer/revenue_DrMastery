@@ -2,7 +2,7 @@ export function getInsuranceModal() {
   function getLongStop() {
     return `
         <article slot="section-body">
-            <div class="grid-settings-dialog__cntr">
+            <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
                 <div class="lbl-wrap">
                     <label>Длинный Stop-Loss</label>
                 </div>
@@ -23,7 +23,7 @@ export function getInsuranceModal() {
   function getFlexStop() {
     return `
         <article slot="section-body">
-            <div class="grid-settings-dialog__cntr">
+            <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
                 <div class="lbl-wrap">
                     <label>Гибкий Stop-Loss</label>
                 </div>
@@ -47,7 +47,7 @@ export function getInsuranceModal() {
   function getPumpDump() {
     return `
         <article slot="section-body">
-            <div class="grid-settings-dialog__cntr">
+            <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
                 <div class="lbl-wrap">
                     <label>PUMP/DUMP фильтры</label>
                 </div>
@@ -68,7 +68,7 @@ export function getInsuranceModal() {
   function getClosePos() {
     return `
         <article slot="section-body">
-            <div class="grid-settings-dialog__cntr">
+            <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
                 <div class="lbl-wrap b-avada">
                     <label>Закрыть позицию</label>
                 </div>
@@ -89,22 +89,15 @@ export function getInsuranceModal() {
   function getBlackList() {
     return `
         <article slot="section-body">
-            <div class="grid-settings-dialog__cntr">
+            <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
                 <div class="lbl-wrap b-avada">
                     <label>Черный список монет</label>
                 </div>
-                <textarea id="blackListCoinsText"></textarea>
+                <div class="bl-list">
+                    <textarea id="blackListCoinsText"></textarea>
+                    <p>Желательно вводить названия в формате (eth)(btc) без разделителей</p>
+                </div>
                 <br>
-                <ul class="selector">
-                    <li>
-                        <input type="radio" id="blListOn" name="blackList" />
-                        <label for="blListOn">Включить</label>
-                    </li>
-                    <li>
-                        <input type="radio" id="blListOff" name="blackList" />
-                        <label for="blListOff">Выключить</label>
-                    </li>
-                </ul>
             </div>
         </article>
         `;

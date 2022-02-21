@@ -6,7 +6,7 @@ import {
   isPageReady,
   fillSelect,
   fillCheckbox,
-} from "../utils/helpers";
+} from "../utils/modals/pageFill";
 import { fillGrid } from "../utils/grids";
 
 export async function createBot({ token, baseToken, curStopBot, isCurStopBot, distance, martin, orders, amount }) {

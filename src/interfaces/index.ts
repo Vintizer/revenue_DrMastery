@@ -20,6 +20,7 @@ export interface CreateBots {
   algo: string;
   botsCount: number;
   tradeType: string;
+  leverage: number;
 }
 export interface CreateBot {
   name: string;
@@ -36,12 +37,14 @@ export interface CreateBot {
   isPartOrders: string;
   partOrders: string;
   profit: string;
+  trailingstop_enabled: boolean;
   trailingstop_rate: string;
   cycleUp: string;
   sleepBeforeCancel: string;
   sleepBeforeUp: string;
   sleepAfterEndOfCycle: string;
   isLogo: string;
+  isRevenue: boolean;
   logarithmic_factor: string;
   autorestart: string;
   isSwitchTp: string;
@@ -60,7 +63,22 @@ export interface CreateBot {
   tvaMinRateChangesCount: string;
   tvaMinTradeVolume: string;
   tvaMinPrice: string;
-  pumpDumpFilters: string;
+  pumpDumpFilters: Array<{ period: string; rate: string }>;
   isStartFilters: string;
-  startFilters: string;
+  startFilters: Array<{ filterType: string; filterOpVal: string; filterVal: string; filterAddData: string }>;
+}
+export interface EditBot {
+  checkboxId: string | number | string[] | null;
+  profit: string | number | string[] | null;
+  trailing: string | number | string[] | null;
+  leverage: string | number | string[] | null;
+  walletChangeInput: string | number | string[] | null;
+  wallet: string | number | string[] | null;
+  coinsList: string | number | string[] | null;
+  flexStopPercent: string | number | string[] | null;
+  flexStop: string | number | string[] | null;
+  longStop: string | number | string[] | null;
+  pumpDump: string | number | string[] | null;
+  closePos: string | number | string[] | null;
+  blackListCoinsText: string | number | string[] | null;
 }

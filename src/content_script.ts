@@ -1,21 +1,25 @@
-import { createBot } from "./bots/index";
 import { getBot } from "./bots/config";
-import { isPageReady } from "./utils/helpers";
-import { showBotsEdit } from "./utils/editBots";
+import { createBot } from "./bots/index";
+import { showBotsEdit, showModal } from "./utils/editBots";
+import { isPageReady } from "./utils/modals/pageFill";
+import { isShowPrice, showPriceAsync } from "./utils/showUsdtBalance";
 
 function isBotsPageShow() {
   return (
     $("h5:contains('Доступные боты')").is(":visible") &&
     isPageReady() &&
     !$("#editCoupleBotsMr").is(":visible") &&
-    $("#bots-edit-dialog").length === 0
+    $("#modal-edit-bots-dialog").length === 0
   );
 }
 
 function startPage() {
   setTimeout(() => {
     if (isBotsPageShow()) {
-      showBotsEdit();
+      showModal();
+    }
+    if (isShowPrice()) {
+      showPriceAsync();
     }
     startPage();
   }, 1000);

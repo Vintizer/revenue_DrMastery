@@ -57,9 +57,14 @@ export function setValue(e, val) {
 export async function waitAsync(testFunc) {
   return new Promise((resolve) => waitAndRun(testFunc, resolve));
 }
-export function fillSelect($field, val) {
+export function fillSelect($field, val, isOptText = false) {
   if (val == null) {
     return;
+  }
+  if (isOptText) {
+    val = $(`option`, $field)
+      .filter((_i, opt) => $(opt).text() === val)
+      .val();
   }
   if ($field.val() !== val) {
     $(`option[value='${val}']`, $field).prop("selected", "selected");
@@ -69,8 +74,8 @@ export function fillSelect($field, val) {
     $field.blur();
   }
 }
-export async function fillSelectAsync($field, val) {
-  fillSelect($field, val);
+export async function fillSelectAsync($field, val, isOptText = false) {
+  fillSelect($field, val, isOptText);
   await waitAsync(isPageReady);
   await timeoutAsync(500);
 }
@@ -89,47 +94,20 @@ export function editSlider($field, val) {
   $field.val(val);
   triggerEvent($field[0], "change");
 }
-function getSumOfArray(arr) {
+export function getSumOfArray(arr) {
   let sum = 0;
   for (let i = 0; i < arr.length; i++) {
     sum += arr[i];
   }
   return sum;
 }
-export function fillGrid(ordersCount, martin) {
-  function getOrdersGrid(ordLength, martinVal): number[] {
-    const ordersGrid: number[] = [];
-    let curMartin = 1;
-    for (let i = 0; i < ordLength; i++) {
-      const pageMartin = $(".input-hard-martin").eq(i).val();
-      martinVal = pageMartin ? pageMartin : martinVal;
-      const martin = i === 0 ? 0 : martinVal;
-      const martinMove = Math.pow(1 + martin / 100, i);
-      curMartin *= 1 + martin / 100;
-      ordersGrid.push(curMartin);
-    }
-    const sum = getSumOfArray(ordersGrid);
-    const orders: number[] = [];
-    for (let i = 0; i < ordersGrid.length; i++) {
-      const order = (ordersGrid[i] * 100) / sum;
-      orders.push(order);
-    }
-    return orders;
+export function fillGrid(orders) {
+  let totalVol = 100;
+  for (let i = 0; i < orders.length; i++) {
+    const input = $(`span:contains('${i + 1}:')`)
+      .closest("div")
+      .find("input")
+      .not(".input-hard-martin");
+    setValue(input, orders[i]);
   }
-  function setOrderGrid(orders: number[]) {
-    let totalVol = 100;
-    for (let i = 0; i < orders.length; i++) {
-      const orderSize = orders[i].toFixed(3);
-      const input = $(`span:contains('${i + 1}:')`)
-        .closest("div")
-        .find("input")
-        .not(".input-hard-martin");
-      totalVol -= orders[i];
-      const val = i === orders.length - 1 ? (Number(orderSize) + totalVol - 0.002).toFixed(3) : orderSize;
-      setValue(input, val);
-    }
-  }
-  const cover = $("#rate_cover_value").val();
-  const orders: number[] = getOrdersGrid(ordersCount, martin);
-  setOrderGrid(orders);
 }
