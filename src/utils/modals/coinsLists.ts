@@ -5,15 +5,15 @@ export function getCoinsLists() {
                 <ul class="selector">
                     <li>
                         <input type="radio" id="safe" name="coinsList" />
-                        <label for="safe">Безопасный</label>
+                        <label for="safe">Безпечний</label>
                     </li>
                     <li>
                         <input type="radio" id="standart" name="coinsList" />
-                        <label for="standart">Стандартный</label>
+                        <label for="standart">Стандартний</label>
                     </li>
                     <li>
                         <input type="radio" id="aggressive" name="coinsList" />
-                        <label for="aggressive">Агрессивный</label>
+                        <label for="aggressive">Агресивний</label>
                     </li>
                 </ul>
             </div>

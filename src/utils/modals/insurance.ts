@@ -4,16 +4,16 @@ export function getInsuranceModal() {
         <article slot="section-body">
             <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
                 <div class="lbl-wrap">
-                    <label>Длинный Stop-Loss</label>
+                    <label>Довгий Stop-Loss</label>
                 </div>
                 <ul class="selector">
                     <li>
                         <input type="radio" id="setLongStop" name="longStop" />
-                        <label for="setLongStop">Поставить</label>
+                        <label for="setLongStop">Встановити</label>
                     </li>
                     <li>
                         <input type="radio" id="removeLongStop" name="longStop" />
-                        <label for="removeLongStop">Убрать</label>
+                        <label for="removeLongStop">Прибрати</label>
                     </li>
                 </ul>
             </div>
@@ -25,7 +25,7 @@ export function getInsuranceModal() {
         <article slot="section-body">
             <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
                 <div class="lbl-wrap">
-                    <label>Гибкий Stop-Loss</label>
+                    <label>Гнучкий Stop-Loss</label>
                 </div>
                 <ul class="selector">
                     <li>
@@ -33,11 +33,11 @@ export function getInsuranceModal() {
                     </li>
                     <li>
                         <input type="radio" id="setFlexStop" name="flexStop" />
-                        <label for="setFlexStop">Поставить</label>
+                        <label for="setFlexStop">Встановити</label>
                     </li>
                     <li>
                         <input type="radio" id="removeFlexStop" name="flexStop" />
-                        <label for="removeFlexStop">Убрать</label>
+                        <label for="removeFlexStop">Прибрати</label>
                     </li>
                 </ul>
             </div>
@@ -49,16 +49,16 @@ export function getInsuranceModal() {
         <article slot="section-body">
             <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
                 <div class="lbl-wrap">
-                    <label>PUMP/DUMP фильтры</label>
+                    <label>PUMP/DUMP фільтри</label>
                 </div>
                 <ul class="selector">
                     <li>
                         <input type="radio" id="setPumpDump" name="pumpDump" />
-                        <label for="setPumpDump">Поставить</label>
+                        <label for="setPumpDump">Встановити</label>
                     </li>
                     <li>
                         <input type="radio" id="removePumpDump" name="pumpDump" />
-                        <label for="removePumpDump">Убрать</label>
+                        <label for="removePumpDump">Прибрати</label>
                     </li>
                 </ul>
             </div>
@@ -70,16 +70,16 @@ export function getInsuranceModal() {
         <article slot="section-body">
             <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
                 <div class="lbl-wrap b-avada">
-                    <label>Закрыть позицию</label>
+                    <label>Закрити позицію</label>
                 </div>
                 <ul class="selector">
                     <li>
                         <input type="radio" id="stopClosePos" name="closePos" />
-                        <label for="stopClosePos">Остановить</label>
+                        <label for="stopClosePos">Зупинити</label>
                     </li>
                     <li class="notStopClosePos">
                         <input type="radio" id="notStopClosePos" name="closePos" />
-                        <label for="notStopClosePos">Не останавливать</label>
+                        <label for="notStopClosePos">Не зупиняти</label>
                     </li>
                 </ul>
             </div>
@@ -91,11 +91,11 @@ export function getInsuranceModal() {
         <article slot="section-body">
             <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
                 <div class="lbl-wrap b-avada">
-                    <label>Черный список монет</label>
+                    <label>Чорний список монет</label>
                 </div>
                 <div class="bl-list">
                     <textarea id="blackListCoinsText"></textarea>
-                    <p>Желательно вводить названия в формате (eth)(btc) без разделителей</p>
+                    <p>Бажано вводити назви у форматі (eth)(btc) без розмежувачей</p>
                 </div>
                 <br>
             </div>
@@ -117,8 +117,8 @@ export function getInsuranceModal() {
 export function getFooter() {
   return `
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="editBots">Применить</button>
-            <button type="button" class="btn btn-secondary" id="closeOpenedDialog">Отменить</button>
+            <button type="button" class="btn btn-primary" id="editBots">Застосувати</button>
+            <button type="button" class="btn btn-secondary" id="closeOpenedDialog">Скасувати</button>
         </div>
     `;
 }

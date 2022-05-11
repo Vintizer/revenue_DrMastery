@@ -3,7 +3,7 @@ export function getControlModal() {
     return `<article slot="section-body">
             <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
               <div class="myDivModal">
-                <label>Изменить Take Profit</label>
+                <label>Змінити Take Profit</label>
                 <select name="select" id="profitSelect">
                   <option selected value="">---</option>
                   <option value="0.01">0,01%</option>
@@ -47,7 +47,7 @@ export function getControlModal() {
     return `<article slot="section-body">
             <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
               <div class="myDivModal">
-                <label>Изменить плечо</label>
+                <label>Змінити плече</label>
                 <select name="select" id="leverageSelect">
                   <option selected value="">----</option>
                   <option value="20">20х</option>
@@ -61,10 +61,10 @@ export function getControlModal() {
     return `          <article slot="section-body">
             <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
               <div class="myDivModal">
-                <label>Изменить трейлинг</label>
+                <label>Змінити трейлінг</label>
                 <select name="select" id="trailingSelect">
                   <option selected value="">----</option>
-                  <option value="-1">Убрать трейлинг</option>
+                  <option value="-1">Прибрати трейлінг</option>
                   <option value="0.1">0.1%</option>
                   <option value="0.5">0.5%</option>
                   <option value="1.0">1.0%</option>
@@ -80,8 +80,8 @@ export function getControlModal() {
     return `          <article slot="section-body">
             <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
               <div class="myDivModal">
-                <label for='walletChange'>Изменить кошелек</label>
-                <input type="text" id="walletChange" placeholder="Кошелек" size="8"/>
+                <label for='walletChange'>Змінити гаманець</label>
+                <input type="text" id="walletChange" placeholder="Гаманець" size="8"/>
                 <select name="select" id="walletChangeSelect">
                   <option selected value="">Депозит</option>
                   <option value="100">$100</option>
@@ -99,12 +99,12 @@ export function getControlModal() {
     return `          <article slot="section-body">
             <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
               <div class="myDivModal">
-                <label>Изменить список монет</label>
+                <label>Змінити список монет</label>
                 <select name="select" id="consListChange">
                   <option selected value="">----</option>
-                  <option value="safe">Безопасный</option>
-                  <option value="standart">Стандартный</option>
-                  <option value="aggressive">Агрессивный</option>
+                  <option value="safe">Безпечний</option>
+                  <option value="standart">Стандартний</option>
+                  <option value="aggressive">Агресивний</option>
                 </select>
               </div>
             </div>
@@ -115,8 +115,8 @@ export function getControlModal() {
     <article slot="section-body">
       <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
         <div class="myDivModal">
-          <button type="button" class="btn btn-success" id="workspaceEdit">Настроить рабочее пространство</button>
-          <button type="button" class="btn btn-success" id="coinsList">Изменить список монет</button>
+          <button type="button" class="btn btn-success" id="workspaceEdit">Налаштувати робочий простір</button>
+          <button type="button" class="btn btn-success" id="coinsList">Змінити список монет</button>
         </div>
       </div>
     </article>`;
@@ -127,15 +127,15 @@ export function getControlModal() {
       <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
         <div class="myDivModal">
           <input type="checkbox" id="cancelOrders" name="scales">
-          <label for="cancelOrders">Отменить активные ордера</label>
+          <label for="cancelOrders">Скасувати активні ордери</label>
         </div>
         <div class="myDivModal">
           <input type="checkbox" id="isStopBot" name="scales">
-          <label for="isStopBot">Остановить бота после выполнения операции</label>
+          <label for="isStopBot">Зупинити робота після виконання операції</label>
         </div>
         <div class="myDivModal">
           <input type="checkbox" id="cancelCycle" name="scales">
-          <label for="cancelCycle">Пометить цикл отмененным</label>
+          <label for="cancelCycle">Позначити цикл скасованим</label>
         </div>
       </div>
     </article>`;
@@ -144,9 +144,9 @@ export function getControlModal() {
     return `          <article slot="section-body">
             <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
               <div class="myDivModal">
-                <button type="button" class="btn btn-success" id="startBots">Запустить</button>
-                <button type="button" class="btn btn-success" id="stopBots">Остановить</button>
-                <button type="button" class="btn btn-danger" id="removeBots">Удалить</button>
+                <button type="button" class="btn btn-success" id="startBots">Запустити</button>
+                <button type="button" class="btn btn-success" id="stopBots">Зупинити</button>
+                <button type="button" class="btn btn-danger" id="removeBots">Видалити</button>
               </div>
             </div>
           </article>`;
@@ -170,8 +170,8 @@ export function getControlModal() {
 function getFooter() {
   return `
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="editBots">Применить</button>
-            <button type="button" class="btn btn-secondary" id="closeOpenedDialog">Отменить</button>
+            <button type="button" class="btn btn-primary" id="editBots">Застосувати</button>
+            <button type="button" class="btn btn-secondary" id="closeOpenedDialog">Скасувати</button>
         </div>
     `;
 }

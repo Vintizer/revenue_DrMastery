@@ -305,7 +305,7 @@ async function editBotsClickAsyncByInsurance() {
         closePos == null &&
         blackListCoinsText == null
       ) {
-        alert("Не выбрано ни одно значение");
+        alert("Не вибрано жодного значення");
         return;
       } else {
         await editBotAsync({
@@ -327,7 +327,7 @@ async function editBotsClickAsyncByInsurance() {
       }
     }
   } else {
-    alert("Выберите хоть одного бота для редактирования");
+    alert("Виберіть хоч одного бота для редагування");
   }
 }
 
@@ -382,7 +382,7 @@ async function editBotsClickAsyncByControl() {
       }
     }
   } else {
-    alert("Выберите хоть одного бота для редактирования");
+    alert("Виберіть хоч одного бота для редагування");
   }
 }
 async function createBotsClickAsync() {
@@ -402,7 +402,7 @@ async function createBotsClickAsync() {
     botsCount == null ||
     tradeType == null
   ) {
-    alert("Выберите, пожалуйста, все характеристики");
+    alert("Виберіть, будь ласка, усі характеристики");
     return;
   }
   await createBotsAsync({
@@ -431,9 +431,9 @@ async function cloneBotsAsync() {
     checkedBoxes.push($(chkBot).attr("id") || "");
   }
   if (checkedBoxes.length > 0) {
-    const result = prompt("Сколько копий бота сделать?");
+    const result = prompt("Скільки копій бота зробити?");
     if (isNaN(Number(result))) {
-      alert("Вы ввели некорректное число");
+      alert("Ви ввели невірне значення");
     } else {
       for (const t of checkedBoxes) {
         for (let i = 0; i < Number(result); i++) {

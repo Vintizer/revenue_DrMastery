@@ -178,7 +178,7 @@ export async function createBotAsync(bot: CreateBot): Promise<boolean> {
         class: "rb-btn-type-2 rb-btn-type-2-xsmall ml-md-3 d-inline-block",
       })
       .appendTo($("[data-target='#CreateApiKeyDialog']").closest("div"));
-    alert("Выберите нужный ключ Апи и нажмите 'Продолжить'");
+    alert("Виберіть потрібний ключ Апі та натисніть 'Продовжити'");
     await waitEventAsync($("#goNext"), "click");
   }
   const isPartFilled: boolean = await goNext(bot);

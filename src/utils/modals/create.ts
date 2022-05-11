@@ -4,7 +4,7 @@ export function getCreateModal() {
             <article slot="section-body">
                 <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
                     <div class="lbl-wrap">
-                        <label>Размер депозита</label>
+                        <label>Розмір депозиту</label>
                     </div>
                     <ul class="selector">
                         <li class='depo'>
@@ -54,15 +54,15 @@ export function getCreateModal() {
                 <ul class="selector">
                     <li>
                         <input type="radio" id="safe" name="coinsList" />
-                        <label for="safe">Безопасный</label>
+                        <label for="safe">Безпечний</label>
                     </li>
                     <li>
                         <input type="radio" id="standart" name="coinsList" />
-                        <label for="standart">Стандартный</label>
+                        <label for="standart">Стандартний</label>
                     </li>
                     <li>
                         <input type="radio" id="aggressive" name="coinsList" />
-                        <label for="aggressive">Агрессивный</label>
+                        <label for="aggressive">Агресивний</label>
                     </li>
                 </ul>
             </div>
@@ -73,7 +73,7 @@ export function getCreateModal() {
     return `<article slot="section-body">
             <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
                 <div class="lbl-wrap">
-                    <label>Стратегия</label>
+                    <label>Стратегія</label>
                 </div>
                 <ul class="selector">
                     <li>
@@ -107,7 +107,7 @@ export function getCreateModal() {
     return `        <article slot="section-body">
             <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
                 <div class="lbl-wrap">
-                    <label>Количество ботов</label>
+                    <label>Кількість ботів</label>
                 </div>
                 <ul class="selector botsCount">
                     <li>
@@ -141,7 +141,7 @@ export function getCreateModal() {
     return `        <article slot="section-body">
             <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
                 <div class="lbl-wrap">
-                    <label>Тип торговли</label>
+                    <label>Тип торгівлі</label>
                 </div>
                 <ul class="selector">
                     <li>
@@ -192,9 +192,9 @@ export function getCreateModal() {
 function getFooter() {
   return `
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="cloneBots">Клонировать</button>
-            <button type="button" class="btn btn-primary" id="createBots">Создать ботов</button>
-            <button type="button" class="btn btn-secondary" id="closeOpenedDialog">Отменить</button>
+            <button type="button" class="btn btn-primary" id="cloneBots">Клонувати</button>
+            <button type="button" class="btn btn-primary" id="createBots">Створити ботів</button>
+            <button type="button" class="btn btn-secondary" id="closeOpenedDialog">Скасувати</button>
         </div>
     `;
 }

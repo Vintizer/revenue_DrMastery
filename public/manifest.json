@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Take Profit Gold",
-  "description": "Take Profit Gold",
-  "version": "1.8.0",
+  "name": "Gold додаток",
+  "description": "Додаток для автоматизації налаштування торгівлі ботів.",
+  "version": "1.0.0",
   "options_ui": {
     "page": "options.html"
   },
