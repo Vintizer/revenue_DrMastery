@@ -23,8 +23,5 @@
         "bg.css"
       ]
     }
-  ],
-  "background": {
-    "service_worker": "js/background.js"
-  }
+  ]
 }

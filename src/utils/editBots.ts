@@ -241,7 +241,6 @@ function subscribeBotEditButtons() {
     $("button:contains('Старт')", $(".rb-after-table-block")).click();
     await confirmAsync();
   });
-  // $("#repairBots").click(() => {});
   $("#stopBots").click(async () => {
     $("button:contains('Стоп')", $(".rb-after-table-block")).click();
     await confirmAsync();
@@ -460,14 +459,6 @@ export async function showModal() {
   const modal = getModal();
   $("#gridSettingsundefined").after(modal);
   subscribeLinkChange();
-  // $("#coinsList").click(() => {
-  //   if ($("#coinsListsSelect").length > 0) {
-  //     $("#coinsListsSelect").remove();
-  //   } else {
-  //     const $coinsLists = getCoinsLists();
-  //     $("article:contains('Изменить список монет')").after($coinsLists);
-  //   }
-  // });
   subscribeBaseButtons();
   subscribeBotEditButtons();
 }
