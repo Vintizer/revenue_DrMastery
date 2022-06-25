@@ -52,9 +52,17 @@ export function getInsuranceModal() {
                     <label>PUMP/DUMP фильтры</label>
                 </div>
                 <ul class="selector">
-                    <li>
-                        <input type="radio" id="setPumpDump" name="pumpDump" />
-                        <label for="setPumpDump">Поставить</label>
+                    <li class="pumpDump">
+                        <input type="radio" id="setPumpDumpV1" name="pumpDump" />
+                        <label for="setPumpDumpV1">V1</label>
+                    </li>
+                    <li class="pumpDump">
+                        <input type="radio" id="setPumpDumpV2" name="pumpDump"/>
+                        <label for="setPumpDumpV2">V2</label>
+                    </li>
+                    <li class="pumpDump">
+                        <input type="radio" id="setPumpDumpV3" name="pumpDump"/>
+                        <label for="setPumpDumpV3">V3</label>
                     </li>
                     <li>
                         <input type="radio" id="removePumpDump" name="pumpDump" />

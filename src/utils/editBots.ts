@@ -81,7 +81,7 @@ async function setStop(stopVal: string, isRemove: boolean) {
     setValue($("#botNotes"), stopLossNotesText);
   }
 }
-async function setPumpDamp(isSet: boolean) {
+async function setPumpDamp(filterName: string) {
   async function clearFiltersAsync() {
     do {
       for (let i = 0; i < $(".pd-filter__delete").length; i++) {
@@ -92,10 +92,12 @@ async function setPumpDamp(isSet: boolean) {
   }
 
   await clearFiltersAsync();
+  const isSet = "removePumpDump" !== filterName;
   if (isSet) {
     const filters = basePumpFilters;
-    for (const filter of filters) {
-      const i = filters.indexOf(filter);
+    const wantedFilters = filters[filterName];
+    for (const filter of wantedFilters) {
+      const i = wantedFilters.indexOf(filter);
       if ($(".pd-filter").length <= i) {
         $("button:contains('Добавить Pump/Dump фильтр')").click();
         await timeoutAsync(500);
@@ -202,7 +204,7 @@ async function editBotAsync({
     await setStop("25", longStop === "setLongStop");
   }
   if (pumpDump != null) {
-    await setPumpDamp(pumpDump === "setPumpDump");
+    await setPumpDamp(pumpDump as string);
   }
   if (closePos != null) {
     await setClosePos(closePos === "stopClosePos");
@@ -214,21 +216,32 @@ async function editBotAsync({
   await timeoutAsync(2000);
   await waitAsync(() => isPageReady() && $(".rb-table-bots tbody tr").length > 0);
 }
-function subscribeLinkChange() {
-  $(".m-tab--small").click((t) => {
-    $("#modal-edit-bots-dialog").remove();
-    const subPageControl = $(t.target).attr("id");
-    const pageType: "create" | "control" | "insurance" = $(t.target).attr("id") as "create" | "control" | "insurance";
-    const modal = getModal(pageType);
-    $("#gridSettingsundefined").after(modal);
-    $("#control").removeClass("avada-link--active");
-    $("#insurance").removeClass("avada-link--active");
-    $("#create").removeClass("avada-link--active");
-    $(`#${pageType}`).addClass("avada-link--active");
-    subscribeLinkChange();
-    subscribeBaseButtons();
-    subscribeBotEditButtons();
+function updateModal(t?: JQuery.ClickEvent<HTMLElement, null, HTMLElement, HTMLElement>) {
+  let pageType: "create" | "control" | "insurance" = "create";
+  if (t != null) {
+    pageType = $(t?.target)?.attr("id") as "create" | "control" | "insurance";
+  }
+  // const subPageControl = $(t?.target)?.attr("id");
+  const modal = getModal(pageType);
+  $("#modal-edit-bots-dialog").remove();
+  $("#gridSettingsundefined").after(modal);
+  $("span").click(function () {
+    const isOpen = $(this).hasClass("show-title-avada");
+    $(".show-title-avada").removeClass("show-title-avada");
+    if (!isOpen) {
+      $(this).toggleClass("show-title-avada");
+    }
   });
+  $("#control").removeClass("avada-link--active");
+  $("#insurance").removeClass("avada-link--active");
+  $("#create").removeClass("avada-link--active");
+  $(`#${pageType}`).addClass("avada-link--active");
+  subscribeLinkChange();
+  subscribeBaseButtons();
+  subscribeBotEditButtons();
+}
+function subscribeLinkChange() {
+  $(".m-tab--small").click(updateModal);
 }
 
 function subscribeBotEditButtons() {
@@ -455,19 +468,31 @@ function subscribeBaseButtons() {
   }
   $("#createBots").click(createBotsClickAsync);
   $("#cloneBots").click(cloneBotsAsync);
+  $("#checkBinance").click(() => {
+    console.log("click: checkBinance");
+    $("#checkBinance").addClass("active");
+    $("#checkBybit").removeClass("active");
+    updateModal();
+  });
+  $("#checkBybit").click(() => {
+    console.log("click: checkBybit");
+    $("#checkBybit").addClass("active");
+    $("#checkBinance").removeClass("active");
+    updateModal();
+  });
 }
 export async function showModal() {
+  console.log("showModal: ");
   const modal = getModal();
   $("#gridSettingsundefined").after(modal);
+  $("span").click(function () {
+    const isOpen = $(this).hasClass("show-title-avada");
+    $(".show-title-avada").removeClass("show-title-avada");
+    if (!isOpen) {
+      $(this).toggleClass("show-title-avada");
+    }
+  });
   subscribeLinkChange();
-  // $("#coinsList").click(() => {
-  //   if ($("#coinsListsSelect").length > 0) {
-  //     $("#coinsListsSelect").remove();
-  //   } else {
-  //     const $coinsLists = getCoinsLists();
-  //     $("article:contains('Изменить список монет')").after($coinsLists);
-  //   }
-  // });
   subscribeBaseButtons();
   subscribeBotEditButtons();
 }

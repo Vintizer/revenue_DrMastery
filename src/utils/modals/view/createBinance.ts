@@ -1,3 +1,24 @@
+import { getMarkets } from "./common";
+
+function getModal({
+  startModal,
+  valArray,
+  endModal,
+  getNodeEl,
+}: {
+  startModal: string;
+  valArray: string[];
+  endModal: string;
+  getNodeEl: (val: string) => string;
+}): string {
+  const modals: string[] = [startModal];
+  for (const val of valArray) {
+    modals.push(getNodeEl(val));
+  }
+  modals.push(endModal);
+  return modals.join("");
+}
+
 export function getCreateModal() {
   function getDepo() {
     return `
@@ -45,29 +66,19 @@ export function getCreateModal() {
     `;
   }
   function getCoinsList() {
-    return `
-        <article slot="section-body">
+    return `          <article slot="section-body">
             <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
-                <div class="lbl-wrap">
-                    <label>Список монет</label>
-                </div>
-                <ul class="selector">
-                    <li>
-                        <input type="radio" id="safe" name="coinsList" />
-                        <label for="safe">Безопасный</label>
-                    </li>
-                    <li>
-                        <input type="radio" id="standart" name="coinsList" />
-                        <label for="standart">Стандартный</label>
-                    </li>
-                    <li>
-                        <input type="radio" id="aggressive" name="coinsList" />
-                        <label for="aggressive">Агрессивный</label>
-                    </li>
-                </ul>
+              <div class="myDivModal">
+                <label>Список монет</label>
+                <select name="select" id="coinsList">
+                  <option selected value="">----</option>
+                  <option value="safe">Безопасный</option>
+                  <option value="standart">Стандартный</option>
+                  <option value="aggressive">Агрессивный</option>
+                </select>
+              </div>
             </div>
-        </article>
-    `;
+          </article>`;
   }
   function getStrategy() {
     return `<article slot="section-body">
@@ -89,53 +100,25 @@ export function getCreateModal() {
         </article>`;
   }
   function getAlgo() {
-    return `<article slot="section-body">
+    function getDepoEl(val: string) {
+      return `<li class="algo">
+        <input type="radio" id="${val}" name="algo" checked/>
+        <label for="${val}">${val}</label>
+        </li>`;
+    }
+    const startModal = `
+           <article slot="section-body">
             <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
                 <div class="lbl-wrap">
                     <label>Алгоритм</label>
                 </div>
-                <ul class="selector">
-                    <li>
-                        <input type="radio" id="F1" name="algo" checked/>
-                        <label for="F1">F1</label>
-                    </li>
-                </ul>
+                <ul class="selector">`;
+    const endModal = `  </ul>
             </div>
-        </article>`;
-  }
-  function getBotsCount() {
-    return `        <article slot="section-body">
-            <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
-                <div class="lbl-wrap">
-                    <label>Количество ботов</label>
-                </div>
-                <ul class="selector botsCount">
-                    <li>
-                        <input type="text" id="botsCount" size="1"/>
-                    </li>
-                   <li>
-                        <input type="radio" id="1" name="botsCount" />
-                        <label class="lbl_botsCount" for="1">1</label>
-                    </li>
-                    <li>
-                        <input type="radio" id="3" name="botsCount" />
-                        <label class="lbl_botsCount" for="3">3</label>
-                    </li>
-                   <li>
-                        <input type="radio" id="4" name="botsCount" />
-                        <label class="lbl_botsCount" for="4">4</label>
-                    </li>
-                    <li>
-                        <input type="radio" id="7" name="botsCount" />
-                        <label class="lbl_botsCount" for="7">7</label>
-                    </li>
-                    <li>
-                        <input type="radio" id="12" name="botsCount" />
-                        <label class="lbl_botsCount" for="12">12</label>
-                    </li>
-                </ul>
-            </div>
-        </article>`;
+        </article>
+    `;
+    const valArray: string[] = ["F1", "F1.2", "F1.3", "F1.4"];
+    return getModal({ startModal, valArray, endModal, getNodeEl: getDepoEl });
   }
   function getTradeType() {
     return `        <article slot="section-body">
@@ -175,14 +158,15 @@ export function getCreateModal() {
             </div>
         </article>`;
   }
+
   return `
     <div class="modal-body avada">
+        ${getMarkets()}
         ${getStrategy()}
         ${getLeverage()}
         ${getDepo()}
         ${getCoinsList()}
         ${getAlgo()}
-        ${getBotsCount()}
         ${getTradeType()}
     </div>
     ${getFooter()}
@@ -192,8 +176,8 @@ export function getCreateModal() {
 function getFooter() {
   return `
         <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="createBots">Создать ботов</button>
             <button type="button" class="btn btn-primary" id="cloneBots">Клонировать</button>
-            <button type="button" class="btn btn-primary" id="createBots">Создать ботов</button>
             <button type="button" class="btn btn-secondary" id="closeOpenedDialog">Отменить</button>
         </div>
     `;

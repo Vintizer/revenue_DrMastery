@@ -1,8 +1,9 @@
 import { getBot } from "./bots/config";
 import { createBot } from "./bots/index";
 import { showBotsEdit, showModal } from "./utils/editBots";
-import { isPageReady } from "./utils/modals/pageFill";
+import { isPageReady, profitEmogi } from "./utils/modals/pageFill";
 import { isShowPrice, showPriceAsync } from "./utils/showUsdtBalance";
+import { showGridValues } from "./utils/modals/showGridValues";
 
 function isBotsPageShow() {
   return (
@@ -13,10 +14,19 @@ function isBotsPageShow() {
   );
 }
 
+function isShowOrderGrid() {
+  return (
+    $("h5:contains('Посмотреть сетку ордеров')").is(":visible") && $(`span:contains('${profitEmogi}')`).length === 0
+  );
+}
+
 function startPage() {
   setTimeout(() => {
     if (isBotsPageShow()) {
       showModal();
+    }
+    if (isShowOrderGrid()) {
+      showGridValues(); // add grid values like  '0' цена - `
     }
     if (isShowPrice()) {
       showPriceAsync();

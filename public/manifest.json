@@ -2,26 +2,25 @@
   "manifest_version": 3,
   "name": "Take Profit Gold",
   "description": "Take Profit Gold",
-  "version": "1.8.0",
+  "version": "1.10.0",
   "options_ui": {
     "page": "options.html"
   },
+  "web_accessible_resources": [
+    {
+      "matches": ["https://app.revenuebot.io/*"],
+      "resources": ["img/*"]
+    }
+  ],
   "action": {
     "default_icon": "icon.png",
     "default_popup": "popup.html"
   },
   "content_scripts": [
     {
-      "matches": [
-        "https://app.revenuebot.io/*"
-      ],
-      "js": [
-        "js/jquery-3.6.0.min.js",
-        "js/content_script.js"
-      ],
-      "css": [
-        "bg.css"
-      ]
+      "matches": ["https://app.revenuebot.io/*"],
+      "js": ["js/jquery-3.6.0.min.js", "js/content_script.js"],
+      "css": ["bg.css"]
     }
   ],
   "background": {

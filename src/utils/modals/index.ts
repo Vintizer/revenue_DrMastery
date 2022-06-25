@@ -1,6 +1,7 @@
-import { getCreateModal } from "./create";
-import { getControlModal } from "./control";
-import { getInsuranceModal } from "./insurance";
+import { getCreateModal as modalBybit } from "./view/createBybit";
+import { getCreateModal as modalBinance } from "./view/createBinance";
+import { getControlModal } from "./view/control";
+import { getInsuranceModal } from "./view/insurance";
 
 function getHeaderAndHrefs() {
   return `
@@ -14,14 +15,18 @@ function getHeaderAndHrefs() {
 
 export function getModal(pageType: "create" | "control" | "insurance" = "insurance") {
   let pageShowFn = getInsuranceModal;
+  const isBinance = $("#checkBinance").hasClass("active");
+  console.log("pageType: ", pageType);
+  console.log("isBinance: ", isBinance);
   switch (pageType) {
     case "control":
       pageShowFn = getControlModal;
       break;
     case "create":
-      pageShowFn = getCreateModal;
+      pageShowFn = isBinance ? modalBinance : modalBybit;
       break;
   }
+
   return `<div role="document" class="modal-dialog modal-md" id="modal-edit-bots-dialog">
       <div class="modal-content avada-modal">
         ${getHeaderAndHrefs()}

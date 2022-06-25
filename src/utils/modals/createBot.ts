@@ -23,7 +23,7 @@ async function addCoinAsync(coin) {
   }
 }
 async function goNext(bot: CreateBot): Promise<boolean> {
-  const name = $("#apiKey :selected").text() + bot.name;
+  const name = $("#apiKey :selected").text() + "_" + bot.name;
   setValue($("#newBotName"), name);
   await waitAsync(() => $("#pair").is(":visible"));
   await fillSelectAsync($("#pair"), bot.pair, true);

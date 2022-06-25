@@ -1,3 +1,4 @@
+export const profitEmogi = "💰";
 export async function waitEventAsync($fields, event) {
   function waitEvent({ $fields, event, cb }) {
     $fields.off().one(event, () => {

@@ -17,6 +17,12 @@
 .selector li.depo {
   width: 60px;
 }
+.selector li.pumpDump {
+  width: 60px;
+}
+.selector li.algo {
+  width: 60px;
+}
 .selector li.notStopClosePos {
   width: 165px;
 }
@@ -112,4 +118,64 @@
 .bl-list > textarea {
   margin-right: 20px;
   min-width: 350px;
+}
+.modal-footer.markets-modal {
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+}
+.markets-modal img{
+  /* border: 3px solid oldlace; */
+  height: 35px;
+}
+#checkBinance{
+    background-size: 100px 40px;
+    height: 35px;
+    width: 114px;
+}
+#checkBybit{
+    background-size: 100px 40px;
+    height: 35px;
+    width: 114px;
+}
+.market-button {
+  background-color: white;
+  border-color: white;
+  box-shadow: 0 0 7px rgb(0 0 0 / 50%);
+}
+.flex_end_avada {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+.modal-footer.flex_start_avada {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem;
+}
+#awada_wallet_q {
+  right: 200px;
+  top: 122px
+}
+#awada_cancel_q {
+  right: 200px;
+  top: 190px
+}
+#awada_stop_q {
+  right: 200px;
+  top: 219px
+}
+#awada_mark_q {
+  right: 200px;
+  top: 247px
+}
+span.show-title-avada:after {
+  content: attr(title);
+  padding: 5px;
+  border: 1px solid #ccc;
+  top: 60px;
+  right: 60%;
+  background: #df600c;
 }
