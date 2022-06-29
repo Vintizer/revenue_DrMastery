@@ -10,7 +10,6 @@ export interface Wallet {
 }
 export interface CoinsList {
   name: string;
-  fullList: string;
   simpleList: string;
 }
 export interface CreateBots {
@@ -18,6 +17,7 @@ export interface CreateBots {
   coinsList: string;
   strategy: string;
   algo: string;
+  market: string;
   botsCount: number;
   tradeType: string;
   leverage: number;
@@ -81,4 +81,8 @@ export interface EditBot {
   pumpDump: string | number | string[] | null;
   closePos: string | number | string[] | null;
   blackListCoinsText: string | number | string[] | null;
+  tempStop: string | number | string[] | null;
+  shortStop: string | number | string[] | null;
+  tempStopPercent: string | number | string[] | null;
+  market: string | number | string[] | null;
 }

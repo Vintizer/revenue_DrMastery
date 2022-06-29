@@ -142,6 +142,7 @@ export function getCreateModal() {
   }
   return `
     <div class="modal-body avada">
+      <input id="market" value="Bybit" hidden>
         ${getMarkets()}
         ${getStrategy()}
         ${getLeverage()}

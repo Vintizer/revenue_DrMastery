@@ -1,4 +1,5 @@
 import { CreateBot } from "./../../interfaces/index";
+import { Toast } from "./../toast";
 import {
   fillCheckbox,
   fillGrid,
@@ -175,11 +176,18 @@ export async function createBotAsync(bot: CreateBot): Promise<boolean> {
     $("<button>Продолжить</button>")
       .attr({
         id: "goNext",
-        class: "rb-btn-type-2 rb-btn-type-2-xsmall ml-md-3 d-inline-block",
+        class: "btn btn-primary",
       })
       .appendTo($("[data-target='#CreateApiKeyDialog']").closest("div"));
-    alert("Выберите нужный ключ Апи и нажмите 'Продолжить'");
+    const toast = new Toast({
+      title: "Выберите ключ Апи",
+      text: "Выберите нужный ключ Апи и нажмите 'Продолжить'",
+      theme: "warning",
+      autohide: true,
+      interval: 250000,
+    });
     await waitEventAsync($("#goNext"), "click");
+    toast._hide();
   }
   const isPartFilled: boolean = await goNext(bot);
   $("button:contains('Создать нового бота')").click();

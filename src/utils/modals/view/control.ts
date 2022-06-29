@@ -127,9 +127,7 @@ export function getControlModal() {
     return `          <article slot="section-body" class="flex_end_avada">
             <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
               <div class="myDivModal">
-                <button type="button" class="btn btn-primary" id="editBots">Применить</button>
-                <button type="button" class="btn btn-secondary" id="closeOpenedDialog">Отменить</button>
-              </div>
+                     </div>
             </div>
           </article>`;
   }
@@ -142,7 +140,6 @@ export function getControlModal() {
             ${getWalletEdit()}
             ${getCoinsList()}
             ${getCheckBoxes()}
-            ${getBtns2()}
           </div>
     </div>
     ${getFooter()}
@@ -152,9 +149,15 @@ export function getControlModal() {
 function getFooter() {
   return `
         <div class="modal-footer flex_start_avada">
+          <div>
             <button type="button" class="btn btn-success" id="startBots">Запустить</button>
             <button type="button" class="btn btn-success" id="stopBots">Остановить</button>
             <button type="button" class="btn btn-danger" id="removeBots">Удалить</button>
+          </div>
+          <div>
+             <button type="button" class="btn btn-primary" id="editBots">Применить</button>
+            <button type="button" class="btn btn-secondary" id="closeOpenedDialog">Отменить</button>
+            </div>
         </div>
     `;
 }

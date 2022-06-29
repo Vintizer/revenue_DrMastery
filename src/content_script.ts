@@ -4,6 +4,7 @@ import { showBotsEdit, showModal } from "./utils/editBots";
 import { isPageReady, profitEmogi } from "./utils/modals/pageFill";
 import { isShowPrice, showPriceAsync } from "./utils/showUsdtBalance";
 import { showGridValues } from "./utils/modals/showGridValues";
+import { Toast } from "./utils/toast";
 
 function isBotsPageShow() {
   return (

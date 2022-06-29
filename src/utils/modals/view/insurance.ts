@@ -20,6 +20,27 @@ export function getInsuranceModal() {
         </article>
         `;
   }
+  function getShortStop() {
+    return `
+        <article slot="section-body">
+            <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
+                <div class="lbl-wrap">
+                    <label>Короткий Stop-Loss</label>
+                </div>
+                <ul class="selector">
+                    <li>
+                        <input type="radio" id="setShortStop" name="shortStop" />
+                        <label for="setShortStop">Поставить</label>
+                    </li>
+                    <li>
+                        <input type="radio" id="removeShortStop" name="shortStop" />
+                        <label for="removeShortStop">Убрать</label>
+                    </li>
+                </ul>
+            </div>
+        </article>
+        `;
+  }
   function getFlexStop() {
     return `
         <article slot="section-body">
@@ -38,6 +59,30 @@ export function getInsuranceModal() {
                     <li>
                         <input type="radio" id="removeFlexStop" name="flexStop" />
                         <label for="removeFlexStop">Убрать</label>
+                    </li>
+                </ul>
+            </div>
+        </article>
+        `;
+  }
+  function getTempStop() {
+    return `
+        <article slot="section-body">
+            <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
+                <div class="lbl-wrap">
+                    <label>Временный Stop-Loss</label>
+                </div>
+                <ul class="selector">
+                    <li>
+                        <input type="text" id="tempStopPercent" placeholder="% stop loss" size="12"/>
+                    </li>
+                    <li>
+                        <input type="radio" id="setTempStop" name="tempStop" />
+                        <label for="setTempStop">Поставить</label>
+                    </li>
+                    <li>
+                        <input type="radio" id="removeTempStop" name="tempStop" />
+                        <label for="removeTempStop">Убрать</label>
                     </li>
                 </ul>
             </div>
@@ -113,7 +158,9 @@ export function getInsuranceModal() {
   return `
     <div id="insuranceModal" class="avada-tab">
         ${getFlexStop()}
+        ${getShortStop()}
         ${getLongStop()}
+        ${getTempStop()}
         ${getPumpDump()}
         ${getClosePos()}
         ${getBlackList()}

@@ -21,49 +21,40 @@ function getModal({
 
 export function getCreateModal() {
   function getDepo() {
-    return `
+    function getDepoEl(val: string) {
+      return `<li class='depo'>
+                <input type="radio" id="${val}" name="depo" />
+                <label for="${val}">$${val}</label>
+            </li>`;
+    }
+    const startModal = `
             <article slot="section-body">
                 <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
                     <div class="lbl-wrap">
                         <label>Размер депозита</label>
                     </div>
-                    <ul class="selector">
-                        <li class='depo'>
-                            <input type="radio" id="30" name="depo" />
-                            <label for="30">$30</label>
-                        </li>
-                        <li class='depo'>
-                            <input type="radio" id="50" name="depo" />
-                            <label for="50">$50</label>
-                        </li>
-                        <li class='depo'>
-                            <input type="radio" id="100" name="depo" />
-                            <label for="100">$100</label>
-                        </li>
-                        <li class='depo'>
-                            <input type="radio" id="200" name="depo" />
-                            <label for="200">$200</label>
-                        </li>
-                        <li class='depo'>
-                            <input type="radio" id="300" name="depo" />
-                            <label for="300">$300</label>
-                        </li>
-                        <li class='depo'>
-                            <input type="radio" id="500" name="depo" />
-                            <label for="500">$500</label>
-                        </li>
-                        <li class='depo'>
-                            <input type="radio" id="700" name="depo" />
-                            <label for="700">$700</label>
-                        </li>
-                        <li class='depo'>
-                            <input type="radio" id="1000" name="depo" />
-                            <label for="1000">$1000</label>
-                        </li>
-                    </ul>
+                    <ul class="selector">`;
+    const endModal = ` </ul>
                 </div>
             </article>
     `;
+    const valArray: string[] = [
+      "10",
+      "15",
+      "20",
+      "30",
+      "50",
+      "100",
+      "200",
+      "300",
+      "500",
+      "1000",
+      "2k",
+      "3k",
+      "5k",
+      "10k",
+    ];
+    return getModal({ startModal, valArray, endModal, getNodeEl: getDepoEl });
   }
   function getCoinsList() {
     return `          <article slot="section-body">
@@ -161,6 +152,7 @@ export function getCreateModal() {
 
   return `
     <div class="modal-body avada">
+        <input id="market" value="Binance" hidden>
         ${getMarkets()}
         ${getStrategy()}
         ${getLeverage()}

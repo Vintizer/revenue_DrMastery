@@ -1,6 +1,5 @@
 import { getModal } from "./modals/index";
-import { createBotsAsync, getCoinsName, getCoinsList, getWalletSize } from "./modals/createBots";
-import { getCoinsLists } from "./modals/coinsLists";
+import { createBotsAsync, getCoinsList, getWalletSize } from "./modals/createBots";
 import {
   editSlider,
   fillCheckbox,
@@ -142,6 +141,10 @@ async function editBotAsync({
   pumpDump,
   closePos,
   blackListCoinsText,
+  tempStop,
+  shortStop,
+  tempStopPercent,
+  market,
 }: Partial<EditBot>) {
   const $bot = $(`#${checkboxId}`).closest("tr").find(".rb-action-btn-edit");
   $bot.click();
@@ -178,7 +181,7 @@ async function editBotAsync({
     await timeoutAsync(1000);
   }
   if (coinsList != null) {
-    const coinListArray = getCoinsList(coinsList as string);
+    const coinListArray = getCoinsList(coinsList as string, market as string);
     fillSelect($("#coin_list_strategy"), "local");
     await timeoutAsync(300);
     await clearCoinsAsync();
@@ -200,8 +203,14 @@ async function editBotAsync({
   if (flexStop != null) {
     await setStop((flexStopPercent as string) || "", flexStop === "setFlexStop");
   }
+  if (shortStop != null) {
+    await setStop("12", shortStop === "setShortStop");
+  }
   if (longStop != null) {
     await setStop("25", longStop === "setLongStop");
+  }
+  if (tempStop != null) {
+    await setStop((tempStopPercent as string) || "", tempStop === "setTempStop");
   }
   if (pumpDump != null) {
     await setPumpDamp(pumpDump as string);
@@ -297,10 +306,14 @@ async function cancelBotAsync({ checkboxId, cancelCycle, cancelOrders, isStopBot
 async function editBotsClickAsyncByInsurance() {
   const flexStopPercent = $("#flexStopPercent").val() || null;
   const flexStop = $("[name='flexStop']:checked").attr("id");
+  const tempStopPercent = $("#tempStopPercent").val() || null;
+  const tempStop = $("[name='tempStop']:checked").attr("id");
   const longStop = $("[name='longStop']:checked").attr("id");
+  const shortStop = $("[name='shortStop']:checked").attr("id");
   const pumpDump = $("[name='pumpDump']:checked").attr("id");
   const closePos = $("[name='closePos']:checked").attr("id");
   const blackListCoinsText = $("#blackListCoinsText").val() || null;
+  market,
 
   const checkedBots = getCheckedBots();
   const checkedBoxes: string[] = [];
@@ -316,6 +329,9 @@ async function editBotsClickAsyncByInsurance() {
         longStop == null &&
         pumpDump == null &&
         closePos == null &&
+        tempStopPercent == null &&
+        tempStop == null &&
+        shortStop == null &&
         blackListCoinsText == null
       ) {
         alert("Не выбрано ни одно значение");
@@ -328,7 +344,7 @@ async function editBotsClickAsyncByInsurance() {
           longStop,
           pumpDump,
           closePos,
-          blackListCoinsText,
+          blackListCoinsText,shortStop,tempStop,tempStopPercent
         });
         if (closePos != null) {
           await timeoutAsync(500);
@@ -399,22 +415,15 @@ async function editBotsClickAsyncByControl() {
   }
 }
 async function createBotsClickAsync() {
+  const market = $("#marketValue").val() as string;
   const depo = Number($("[name='depo']:checked").attr("id"));
-  const coinsList = $("[name='coinsList']:checked").attr("id");
+  const coinsList: string = $("#coinsList").val() as string;
   const strategy = $("[name='strategy']:checked").attr("id") || null;
   const algo = $("[name='algo']:checked").attr("id");
   const leverage = Number($("[name='leverageAmount']:checked").attr("id")?.replace("x", ""));
   const botsCount = Number($("#botsCount").val() || $("[name='botsCount']:checked").attr("id"));
   const tradeType = $("[name='tradeType']:checked").attr("id");
-  if (
-    depo == null ||
-    strategy == null ||
-    coinsList == null ||
-    leverage == null ||
-    algo == null ||
-    botsCount == null ||
-    tradeType == null
-  ) {
+  if (depo == null || strategy == null || coinsList == "" || leverage == null || algo == null || tradeType == null) {
     alert("Выберите, пожалуйста, все характеристики");
     return;
   }
@@ -426,6 +435,7 @@ async function createBotsClickAsync() {
     algo,
     botsCount,
     tradeType,
+    market,
   });
 }
 async function cloneBotsAsync() {

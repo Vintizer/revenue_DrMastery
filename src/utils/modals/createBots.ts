@@ -5,7 +5,7 @@ import { CreateBots } from "../../interfaces";
 import { CoinsList, CreateBot } from "./../../interfaces/index";
 import { isPageReady, timeoutAsync, waitAsync, editSlider, fillCheckbox } from "./pageFill";
 import { walletsFront1, walletsFront2 } from "./../../configs/wallets";
-export function getCoinsListObj(coinsList: string): CoinsList | null {
+export function getCoinsListObj(coinsList: string, market: string): CoinsList | null {
   let coinsName: string | null = null;
   switch (coinsList) {
     case "safe":
@@ -18,13 +18,13 @@ export function getCoinsListObj(coinsList: string): CoinsList | null {
       coinsName = "GOLD";
       break;
   }
-  return coinsLists.find((c) => c.name === coinsName) || null;
+  return coinsList[market]?.find((c) => c.name === coinsName) || null;
 }
-export function getCoinsName(coinsList: string): string | null {
-  return getCoinsListObj(coinsList)?.name || null;
+function getCoinsName(coinsList: string, market: string): string | null {
+  return getCoinsListObj(coinsList, market)?.name || null;
 }
-export function getCoinsList(coinsList: string): string | null {
-  return getCoinsListObj(coinsList)?.simpleList || null;
+export function getCoinsList(coinsList: string, market: string): string | null {
+  return getCoinsListObj(coinsList, market)?.simpleList || null;
 }
 export function getWalletSize(depo: number, leverage: number, strategy: string): number | null {
   const baseWallet = strategy === "front2" ? walletsFront2 : walletsFront1;
@@ -44,7 +44,16 @@ async function setPart(isPartOrders: boolean | null, partOrders: string | null):
   await waitAsync(() => isPageReady());
   await timeoutAsync(500);
 }
-export async function createBotsAsync({ depo, coinsList, strategy, algo, botsCount, tradeType, leverage }: CreateBots) {
+export async function createBotsAsync({
+  depo,
+  coinsList,
+  strategy,
+  algo,
+  botsCount,
+  tradeType,
+  leverage,
+  market,
+}: CreateBots) {
   async function cloneBotAsync() {
     const $copyBtn = $("[data-action='clone']").first();
     $copyBtn.click();
@@ -88,8 +97,8 @@ export async function createBotsAsync({ depo, coinsList, strategy, algo, botsCou
     isUseBW: actualStrategy?.switchPart.isUseBW,
     isWhiteList: actualStrategy?.switchPart.isWhiteList,
     isBlackList: actualStrategy?.switchPart.isBlackList,
-    coinsName: getCoinsName(coinsList),
-    coinsList: getCoinsList(coinsList),
+    coinsName: getCoinsName(coinsList, market),
+    coinsList: getCoinsList(coinsList, market),
     periodValue: actualStrategy?.switchPart.periodValue,
     periodUnit: actualStrategy?.switchPart.periodUnit,
     intervalValue: actualStrategy?.switchPart.intervalValue,
