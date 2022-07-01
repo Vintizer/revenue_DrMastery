@@ -39,14 +39,14 @@ export function getCreateModal() {
             </article>
     `;
     const valArray: string[] = [
-      "10",
-      "15",
-      "20",
-      "30",
-      "50",
-      "100",
-      "200",
-      "300",
+      // "10",
+      // "15",
+      // "20",
+      // "30",
+      // "50",
+      // "100",
+      // "200",
+      // "300",
       "500",
       "1000",
       "2k",
@@ -65,7 +65,8 @@ export function getCreateModal() {
                   <option selected value="">----</option>
                   <option value="safe">Безопасный</option>
                   <option value="standart">Стандартный</option>
-                  <option value="aggressive">Агрессивный</option>
+                  <option value="aggressive">Агрессивный(x20)</option>
+                  <option value="aggressivex50">Агрессивный(x50)</option>
                 </select>
               </div>
             </div>
@@ -79,11 +80,7 @@ export function getCreateModal() {
                 </div>
                 <ul class="selector">
                     <li>
-                        <input type="radio" id="front1" name="strategy" />
-                        <label for="front1">Front1</label>
-                    </li>
-                    <li>
-                        <input type="radio" id="front2" name="strategy" />
+                        <input type="radio" id="front2" name="strategy" selected/>
                         <label for="front2">Front2</label>
                     </li>
                 </ul>

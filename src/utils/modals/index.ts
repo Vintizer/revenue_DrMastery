@@ -16,8 +16,6 @@ function getHeaderAndHrefs() {
 export function getModal(pageType: "create" | "control" | "insurance" = "insurance") {
   let pageShowFn = getInsuranceModal;
   const isBinance = $("#checkBinance").hasClass("active");
-  console.log("pageType: ", pageType);
-  console.log("isBinance: ", isBinance);
   switch (pageType) {
     case "control":
       pageShowFn = getControlModal;

@@ -80,6 +80,17 @@ async function setStop(stopVal: string, isRemove: boolean) {
     setValue($("#botNotes"), stopLossNotesText);
   }
 }
+async function setTempStop(stopVal: string, isRemove: boolean) {
+  if (isRemove === false) {
+    await removeFilter("stop_loss:timeout:time");
+    await removeFilter("stop_loss:exit:bool");
+    const newText = (($("#botNotes").val() as string) || "")?.replace(stopLossNotesText, "");
+    setValue($("#botNotes"), newText);
+  } else if (stopVal != "") {
+    await setFilter("stop_loss:timeout:time", "==", stopVal);
+    setValue($("#botNotes"), stopLossNotesText);
+  }
+}
 async function setPumpDamp(filterName: string) {
   async function clearFiltersAsync() {
     do {
@@ -181,6 +192,10 @@ async function editBotAsync({
     await timeoutAsync(1000);
   }
   if (coinsList != null) {
+    if (market == null || market == "") {
+      const isBinance: boolean = $("[data-el-host='exchange'] span").hasClass("rb-td-stock-icon-binance");
+      market = isBinance ? "Binance" : "Bybit";
+    }
     const coinListArray = getCoinsList(coinsList as string, market as string);
     fillSelect($("#coin_list_strategy"), "local");
     await timeoutAsync(300);
@@ -210,7 +225,7 @@ async function editBotAsync({
     await setStop("25", longStop === "setLongStop");
   }
   if (tempStop != null) {
-    await setStop((tempStopPercent as string) || "", tempStop === "setTempStop");
+    await setTempStop((tempStopPercent as string) || "", tempStop === "setTempStop");
   }
   if (pumpDump != null) {
     await setPumpDamp(pumpDump as string);
@@ -225,6 +240,38 @@ async function editBotAsync({
   await timeoutAsync(2000);
   await waitAsync(() => isPageReady() && $(".rb-table-bots tbody tr").length > 0);
 }
+function subscribeHelpClick() {
+  const heplTextMap: Record<string, string> = {
+    awada_cancel_q:
+      "Бот состоит из открытой позиции, тейк-профит ордера" +
+      " и страховочных ордеров для усреднения. Если позицию" +
+      " закрываем руками на бирже, то ордера можно закрыть с помощью этой функции.",
+    awada_stop_q: "После отмены ордеров, бот не будет открывать новые позиции.",
+    awada_mark_q:
+      "Использовать, чтобы бот забыл свой активный цикл и начал новый цикл." +
+      " Если позицию и ордера закрыли руками, то пометив цикл отменённым," +
+      " бот не будет привязан к этой позиции и ордерам.",
+    awada_wallet_q: "Размер депозита, которым будет оперировать бот (без учёта плеча).",
+  };
+  $("#avada_help_div").click(() => {
+    $("#avada_help_div").remove();
+  });
+  $("span.avada_question").click(function () {
+    if ($("#avada_help_div", this).length > 0) {
+      $("#avada_help_div", this).remove();
+    } else {
+      $("#avada_help_div").remove();
+      const curId: string = $(this).attr("id") || "";
+      const text = heplTextMap[curId];
+      $(`<div>${text}</div>`)
+        .attr({
+          id: "avada_help_div",
+          class: "avada_help_div",
+        })
+        .appendTo($(this));
+    }
+  });
+}
 function updateModal(t?: JQuery.ClickEvent<HTMLElement, null, HTMLElement, HTMLElement>) {
   let pageType: "create" | "control" | "insurance" = "create";
   if (t != null) {
@@ -234,13 +281,7 @@ function updateModal(t?: JQuery.ClickEvent<HTMLElement, null, HTMLElement, HTMLE
   const modal = getModal(pageType);
   $("#modal-edit-bots-dialog").remove();
   $("#gridSettingsundefined").after(modal);
-  $("span").click(function () {
-    const isOpen = $(this).hasClass("show-title-avada");
-    $(".show-title-avada").removeClass("show-title-avada");
-    if (!isOpen) {
-      $(this).toggleClass("show-title-avada");
-    }
-  });
+  subscribeHelpClick();
   $("#control").removeClass("avada-link--active");
   $("#insurance").removeClass("avada-link--active");
   $("#create").removeClass("avada-link--active");
@@ -313,7 +354,6 @@ async function editBotsClickAsyncByInsurance() {
   const pumpDump = $("[name='pumpDump']:checked").attr("id");
   const closePos = $("[name='closePos']:checked").attr("id");
   const blackListCoinsText = $("#blackListCoinsText").val() || null;
-  market,
 
   const checkedBots = getCheckedBots();
   const checkedBoxes: string[] = [];
@@ -344,7 +384,10 @@ async function editBotsClickAsyncByInsurance() {
           longStop,
           pumpDump,
           closePos,
-          blackListCoinsText,shortStop,tempStop,tempStopPercent
+          blackListCoinsText,
+          shortStop,
+          tempStop,
+          tempStopPercent,
         });
         if (closePos != null) {
           await timeoutAsync(500);
@@ -415,7 +458,7 @@ async function editBotsClickAsyncByControl() {
   }
 }
 async function createBotsClickAsync() {
-  const market = $("#marketValue").val() as string;
+  const market = $("#market").val() as string;
   const depo = Number($("[name='depo']:checked").attr("id"));
   const coinsList: string = $("#coinsList").val() as string;
   const strategy = $("[name='strategy']:checked").attr("id") || null;
@@ -479,29 +522,20 @@ function subscribeBaseButtons() {
   $("#createBots").click(createBotsClickAsync);
   $("#cloneBots").click(cloneBotsAsync);
   $("#checkBinance").click(() => {
-    console.log("click: checkBinance");
     $("#checkBinance").addClass("active");
     $("#checkBybit").removeClass("active");
     updateModal();
   });
   $("#checkBybit").click(() => {
-    console.log("click: checkBybit");
     $("#checkBybit").addClass("active");
     $("#checkBinance").removeClass("active");
     updateModal();
   });
 }
 export async function showModal() {
-  console.log("showModal: ");
   const modal = getModal();
   $("#gridSettingsundefined").after(modal);
-  $("span").click(function () {
-    const isOpen = $(this).hasClass("show-title-avada");
-    $(".show-title-avada").removeClass("show-title-avada");
-    if (!isOpen) {
-      $(this).toggleClass("show-title-avada");
-    }
-  });
+  subscribeHelpClick();
   subscribeLinkChange();
   subscribeBaseButtons();
   subscribeBotEditButtons();

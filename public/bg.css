@@ -171,15 +171,20 @@
   right: 200px;
   top: 247px
 }
-span.show-title-avada:after {
+/* span.show-title-avada:after {
   content: attr(title);
   padding: 5px;
   border: 1px solid #ccc;
   top: 60px;
   right: 60%;
   background: #df600c;
+} */
+.avada_help_div{
+  background-color: #df600c;
+  min-width: 300px;
+  padding: 6px;
+  padding-left: 20px;
 }
-
 #goNext{
   padding: 25px;
 }

@@ -70,7 +70,7 @@ export function getInsuranceModal() {
         <article slot="section-body">
             <div class="grid-settings-dialog__cntr_avada grid-settings-dialog__cntr">
                 <div class="lbl-wrap">
-                    <label>Временный Stop-Loss</label>
+                    <label>Временной Stop-Loss</label>
                 </div>
                 <ul class="selector">
                     <li>

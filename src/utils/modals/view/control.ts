@@ -82,7 +82,7 @@ export function getControlModal() {
               <div class="myDivModal">
                 <label for='walletChange'>Изменить кошелек</label>
                 <input type="text" id="walletChange" placeholder="Кошелек" size="8"/>
-                <span class="q rb-btn-popover-question avada_question" id="awada_wallet_q"  title="Кошелек"></span>
+                <span class="q rb-btn-popover-question avada_question" id="awada_wallet_q"  title="Размер депозита, которым будет оперировать бот (без учёта плеча)."></span>
               </div>
             </div>
           </article>`;
@@ -93,9 +93,17 @@ export function getControlModal() {
               <div class="myDivModal">
                 <label>Изменить список монет</label>
                 <select name="select" id="consListChange">
-                  <option selected value="">----</option>
-                  <option value="safe">Безопасный</option>
-                  <option value="aggressive">Агрессивный</option>
+                <option value="">---</option>
+                  <optgroup label="Binance">
+                    <option value="binance-safe">Безопасный</option>
+                    <option value="binance-standart">Стандартный</option>
+                    <option value="binance-aggressive">Агрессивный(x20)</option>
+                    <option value="binance-aggressivex50">Агрессивный(x50)</option>
+                  </optgroup>
+                  <optgroup label="Bybit">
+                    <option value="bybit-safe">Безопасный</option>
+                    <option value="bybit-aggressive">Агрессивный</option>
+                  </optgroup>
                 </select>
               </div>
             </div>
@@ -108,17 +116,17 @@ export function getControlModal() {
         <div class="myDivModal">
           <input type="checkbox" id="cancelOrders" name="scales">
           <label for="cancelOrders">Отменить активные ордера</label>
-          <span class="q rb-btn-popover-question avada_question" id="awada_cancel_q" title="Отменить"></span>
+          <span class="q rb-btn-popover-question avada_question" id="awada_cancel_q" title="Бот состоит из открытой позиции, тейк-профит ордера и страховочных ордеров для усреднения. Если позицию закрываем руками на бирже, то ордера можно закрыть с помощью этой функции."></span>
         </div>
         <div class="myDivModal">
           <input type="checkbox" id="isStopBot" name="scales">
           <label for="isStopBot">Остановить бота после выполнения операции</label>
-          <span class="q rb-btn-popover-question avada_question" id="awada_stop_q" title="Остановить"></span>
+          <span class="q rb-btn-popover-question avada_question" id="awada_stop_q" title="После отмены ордеров, бот не будет открывать новые позиции."></span>
         </div>
         <div class="myDivModal">
           <input type="checkbox" id="cancelCycle" name="scales">
           <label for="cancelCycle">Пометить цикл отмененным</label>
-          <span class="q rb-btn-popover-question avada_question" id="awada_mark_q" title="Пометить"></span>
+          <span class="q rb-btn-popover-question avada_question" id="awada_mark_q" title="Использовать, чтобы бот забыл свой активный цикл и начал новый цикл. Если позицию и ордера закрыли руками, то пометив цикл отменённым, бот не будет привязан к этой позиции и ордерам."></span>
         </div>
       </div>
     </article>`;

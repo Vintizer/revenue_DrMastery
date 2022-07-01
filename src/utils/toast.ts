@@ -13,7 +13,6 @@ export class Toast {
       this._show();
   }
   _show() {
-    console.log("_show: ");
     this._el.classList.add("toast_showing"),
       this._el.classList.add("toast_show"),
       window.setTimeout(() => {

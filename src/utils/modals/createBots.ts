@@ -4,7 +4,7 @@ import { createBotAsync } from "./createBot";
 import { CreateBots } from "../../interfaces";
 import { CoinsList, CreateBot } from "./../../interfaces/index";
 import { isPageReady, timeoutAsync, waitAsync, editSlider, fillCheckbox } from "./pageFill";
-import { walletsFront1, walletsFront2 } from "./../../configs/wallets";
+import { walletsFront2 } from "./../../configs/wallets";
 export function getCoinsListObj(coinsList: string, market: string): CoinsList | null {
   let coinsName: string | null = null;
   switch (coinsList) {
@@ -17,8 +17,29 @@ export function getCoinsListObj(coinsList: string, market: string): CoinsList | 
     case "aggressive":
       coinsName = "GOLD";
       break;
+    case "aggressivex50":
+      coinsName = "GOLDx50";
+      break;
+    case "binance-safe":
+      coinsName = "GOLD DEF";
+      break;
+    case "binance-standart":
+      coinsName = "GOLD MID";
+      break;
+    case "binance-aggressive":
+      coinsName = "GOLD";
+      break;
+    case "binance-aggressivex50":
+      coinsName = "GOLDx50";
+      break;
+    case "bybit-safe":
+      coinsName = "GOLD DEF";
+      break;
+    case "bybit-aggressive":
+      coinsName = "GOLD";
+      break;
   }
-  return coinsList[market]?.find((c) => c.name === coinsName) || null;
+  return coinsLists[market]?.find((c) => c.name === coinsName) || null;
 }
 function getCoinsName(coinsList: string, market: string): string | null {
   return getCoinsListObj(coinsList, market)?.name || null;
@@ -27,7 +48,7 @@ export function getCoinsList(coinsList: string, market: string): string | null {
   return getCoinsListObj(coinsList, market)?.simpleList || null;
 }
 export function getWalletSize(depo: number, leverage: number, strategy: string): number | null {
-  const baseWallet = strategy === "front2" ? walletsFront2 : walletsFront1;
+  const baseWallet = strategy === "front2" ? walletsFront2 : [];
   return baseWallet.find((wallet) => wallet.depo === depo && wallet.leverage === leverage)?.wallet || null;
 }
 

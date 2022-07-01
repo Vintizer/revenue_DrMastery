@@ -14,9 +14,9 @@ const f1long = {
     restructCycleCover: "-1",
     profit: "1",
     cycleUp: "0.4",
-    sleepBeforeCancel: "0",
-    sleepBeforeUp: "0",
-    sleepAfterEndOfCycle: "0",
+    sleepBeforeCancel: "0.5",
+    sleepBeforeUp: "0.5",
+    sleepAfterEndOfCycle: "1",
     matrix: ["6.660", "13.330", "26.660", "53.350"],
   },
   externalPart: {
@@ -58,6 +58,7 @@ const f1long = {
       { filterType: "rsi:rsi 3h-5m:value", filterOpVal: "<", filterVal: "45", filterAddData: "8" },
       { filterType: "rsi:rsi 6h-15m:value", filterOpVal: "<", filterVal: "50", filterAddData: "8" },
       { filterType: "rsi:rsi 6h-30m:value", filterOpVal: "<", filterVal: "55", filterAddData: "8" },
+      { filterType: "cycle_up:check:time", filterOpVal: "==", filterVal: "3" },
     ],
   },
   extBotConfig: {
@@ -84,9 +85,9 @@ const f1short = {
     restructCycleCover: "-1",
     profit: "1",
     cycleUp: "0.4",
-    sleepBeforeCancel: "0",
-    sleepBeforeUp: "0",
-    sleepAfterEndOfCycle: "0",
+    sleepBeforeCancel: "0.5",
+    sleepBeforeUp: "0.5",
+    sleepAfterEndOfCycle: "1",
     matrix: ["4.575", "9.806", "22.229", "63.390"],
   },
   externalPart: {
@@ -128,6 +129,7 @@ const f1short = {
       { filterType: "rsi:rsi 3h-5m:value", filterOpVal: ">", filterVal: "50", filterAddData: "8" },
       { filterType: "rsi:rsi 6h-15m:value", filterOpVal: ">", filterVal: "45", filterAddData: "8" },
       { filterType: "rsi:rsi 6h-30m:value", filterOpVal: ">", filterVal: "40", filterAddData: "8" },
+      { filterType: "cycle_up:check:time", filterOpVal: "==", filterVal: "3" },
     ],
   },
 

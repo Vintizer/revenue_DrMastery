@@ -68,7 +68,7 @@ async function goNext(bot: CreateBot): Promise<boolean> {
     await waitAsync(() => isPageReady());
     await timeoutAsync(1000);
     if (false) {
-      // TODOconsole.log();
+      // TODO
     }
     $wantedMatrixOption = $(`option`, $("#OrdersMatrixMartingale")).filter((_i, o) => $(o).text() === gridName);
   }
