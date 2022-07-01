@@ -47,9 +47,14 @@ function getCoinsName(coinsList: string, market: string): string | null {
 export function getCoinsList(coinsList: string, market: string): string | null {
   return getCoinsListObj(coinsList, market)?.simpleList || null;
 }
-export function getWalletSize(depo: number, leverage: number, strategy: string): number | null {
+export function getWalletSize(depo: number, leverage: number, strategy: string, market: string): number | null {
   const baseWallet = strategy === "front2" ? walletsFront2 : [];
-  return baseWallet.find((wallet) => wallet.depo === depo && wallet.leverage === leverage)?.wallet || null;
+  const exception500 = 7.5;
+  const res =
+    depo === 500 && market === "Binance"
+      ? exception500
+      : baseWallet.find((wallet) => wallet.depo === depo && wallet.leverage === leverage)?.wallet || null;
+  return res;
 }
 
 async function setPart(isPartOrders: boolean | null, partOrders: string | null): Promise<void> {
@@ -92,7 +97,7 @@ export async function createBotsAsync({
     market: "29", // Binance Futures USDT-M
     pair: "XRP/USDT",
     algo: tradeType === "long" ? "long" : "short",
-    wallet: getWalletSize(depo, leverage, strategy),
+    wallet: getWalletSize(depo, leverage, strategy, market),
     leverage: leverage,
     cover: actualStrategy?.mainPart.cover,
     indent: actualStrategy?.mainPart.indent,
@@ -132,7 +137,6 @@ export async function createBotsAsync({
     isStartFilters: actualStrategy?.filterPart.isStartFilters,
     startFilters: actualStrategy?.filterPart.startFilters,
   };
-
   const isPartSet: boolean = await createBotAsync(botValues);
   const isPart: boolean | null = actualStrategy?.mainPart.isPartOrders;
   const partOrders: string | null = actualStrategy?.mainPart.partOrders;

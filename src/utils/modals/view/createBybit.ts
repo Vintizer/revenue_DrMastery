@@ -22,8 +22,12 @@ function getModal({
 export function getCreateModal() {
   function getDepo() {
     function getDepoEl(val: string) {
+      let id = val;
+      if (val.includes("k")) {
+        id = val.replace("k", "000");
+      }
       return `<li class='depo'>
-                <input type="radio" id="${val}" name="depo" />
+                <input type="radio" id="${id}" name="depo" />
                 <label for="${val}">$${val}</label>
             </li>`;
     }
@@ -38,22 +42,7 @@ export function getCreateModal() {
                 </div>
             </article>
     `;
-    const valArray: string[] = [
-      "10",
-      "15",
-      "20",
-      "30",
-      "50",
-      "100",
-      "200",
-      "300",
-      "500",
-      "1000",
-      "2k",
-      "3k",
-      "5k",
-      "10k",
-    ];
+    const valArray: string[] = ["10", "15", "20", "50", "100", "200", "300", "500", "1000", "2k", "3k", "5k", "10k"];
     return getModal({ startModal, valArray, endModal, getNodeEl: getDepoEl });
   }
   function getCoinsList() {
@@ -78,7 +67,7 @@ export function getCreateModal() {
                 </div>
                 <ul class="selector">
                     <li>
-                        <input type="radio" id="front2" name="strategy" />
+                        <input type="radio" id="front2" name="strategy" checked/>
                         <label for="front2">Front2</label>
                     </li>
                 </ul>
@@ -88,7 +77,7 @@ export function getCreateModal() {
   function getAlgo() {
     function getDepoEl(val: string) {
       return `<li class="algo">
-        <input type="radio" id="${val}" name="algo" checked/>
+        <input type="radio" id="${val}" name="algo"/>
         <label for="${val}">${val}</label>
         </li>`;
     }
@@ -133,7 +122,7 @@ export function getCreateModal() {
                 </div>
                 <ul class="selector">
                     <li>
-                        <input type="radio" id="20x" name="leverageAmount" />
+                        <input type="radio" id="20x" name="leverageAmount" checked/>
                         <label for="20x">20x</label>
                     </li>
                 </ul>

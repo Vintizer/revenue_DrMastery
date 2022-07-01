@@ -171,7 +171,9 @@ async function editBotAsync({
   if (wallet != null || walletChangeInput != null) {
     // TODO
     const walletAmount =
-      walletChangeInput == null ? getWalletSize(Number(wallet), Number(leverage), "front1") : walletChangeInput;
+      walletChangeInput == null
+        ? getWalletSize(Number(wallet), Number(leverage), "front2", market as string)
+        : walletChangeInput;
     const walletName = `${walletAmount}_${new Date().getTime().toString().slice(-4)}`;
     const $wallet = $("#depo");
     let $wantedOption = $(`option`, $wallet).filter((_i, o) => $(o).text() === walletName);

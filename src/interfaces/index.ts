@@ -4,7 +4,7 @@ export interface Strategy {
   type: "long" | "short";
 }
 export interface Wallet {
-  depo: number;
+  depo: number | string;
   wallet: number;
   leverage: number;
 }
