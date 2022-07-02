@@ -1,4 +1,5 @@
 import { Strategy } from "../interfaces";
+import { basePumpFilters } from "./pumpDumpFilters";
 
 const f1long = {
   mainPart: {
@@ -44,12 +45,7 @@ const f1long = {
     tvaMinRateChangesCount: "2",
     tvaMinTradeVolume: "0",
     tvaMinPrice: "",
-    pumpDumpFilters: [
-      { period: "0.3", rate: "7" },
-      { period: "1", rate: "15" },
-      { period: "24", rate: "20" },
-      { period: "48", rate: "35" },
-    ],
+    pumpDumpFilters: basePumpFilters.setPumpDumpV1,
   },
   filterPart: {
     isStartFilters: true,
@@ -115,12 +111,7 @@ const f1short = {
     tvaMinRateChangesCount: "2",
     tvaMinTradeVolume: "0",
     tvaMinPrice: "",
-    pumpDumpFilters: [
-      { period: "0.3", rate: "7" },
-      { period: "1", rate: "15" },
-      { period: "24", rate: "20" },
-      { period: "48", rate: "35" },
-    ],
+    pumpDumpFilters: basePumpFilters.setPumpDumpV1,
   },
   filterPart: {
     isStartFilters: true,

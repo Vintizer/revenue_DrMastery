@@ -90,12 +90,22 @@ export async function createBotsAsync({
     await waitAsync(() => isPageReady());
   }
 
+  function getBotMarketVal() {
+    const marketMap: Record<string, string> = {
+      Binance: "29",
+      // "Binance Futures USDT-M": "29",
+      Bybit: "42",
+      // "Bybit Futures USDS-M": "51",
+    };
+    return marketMap[market];
+  }
+
   const actualStrategy = strategies.find((str) => str.name === algo && str.type === tradeType)?.strategy;
 
   const botValues: CreateBot = {
     name: `${algo}`,
-    market: "29", // Binance Futures USDT-M
-    pair: "XRP/USDT",
+    market: getBotMarketVal(), // Binance Futures USDT-M
+    pair: market === "Binance" ? "ETH/USDT" : "ALICE/USDT",
     algo: tradeType === "long" ? "long" : "short",
     wallet: getWalletSize(depo, leverage, strategy, market),
     leverage: leverage,

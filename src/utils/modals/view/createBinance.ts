@@ -68,7 +68,6 @@ export function getCreateModal() {
                 <select name="select" id="coinsList">
                   <option selected value="">----</option>
                   <option value="safe">Безопасный</option>
-                  <option value="standart">Стандартный</option>
                   <option value="aggressive">Агрессивный(x20)</option>
                   <option value="aggressivex50">Агрессивный(x50)</option>
                 </select>
@@ -169,7 +168,7 @@ export function getCreateModal() {
 function getFooter() {
   return `
         <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="createBots">Создать ботов</button>
+        <button type="button" class="btn btn-primary" id="createBots">Создать бота</button>
             <button type="button" class="btn btn-primary" id="cloneBots">Клонировать</button>
             <button type="button" class="btn btn-secondary" id="closeOpenedDialog">Отменить</button>
         </div>

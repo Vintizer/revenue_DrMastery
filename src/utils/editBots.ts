@@ -283,6 +283,11 @@ function updateModal(t?: JQuery.ClickEvent<HTMLElement, null, HTMLElement, HTMLE
   const modal = getModal(pageType);
   $("#modal-edit-bots-dialog").remove();
   $("#gridSettingsundefined").after(modal);
+  if ($("#market").val() === "Binance") {
+    $("#checkBinance").parent().addClass("check-active");
+  } else {
+    $("#checkBybit").parent().addClass("check-active");
+  }
   subscribeHelpClick();
   $("#control").removeClass("avada-link--active");
   $("#insurance").removeClass("avada-link--active");

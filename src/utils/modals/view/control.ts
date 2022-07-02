@@ -96,7 +96,6 @@ export function getControlModal() {
                 <option value="">---</option>
                   <optgroup label="Binance">
                     <option value="binance-safe">Безопасный</option>
-                    <option value="binance-standart">Стандартный</option>
                     <option value="binance-aggressive">Агрессивный(x20)</option>
                     <option value="binance-aggressivex50">Агрессивный(x50)</option>
                   </optgroup>

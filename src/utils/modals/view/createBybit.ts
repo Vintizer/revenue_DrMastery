@@ -147,7 +147,7 @@ export function getCreateModal() {
 function getFooter() {
   return `
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="createBots">Создать ботов</button>
+            <button type="button" class="btn btn-primary" id="createBots">Создать бота</button>
             <button type="button" class="btn btn-primary" id="cloneBots">Клонировать</button>
             <button type="button" class="btn btn-secondary" id="closeOpenedDialog">Отменить</button>
         </div>
