@@ -6,6 +6,9 @@ import { CoinsList, CreateBot } from "./../../interfaces/index";
 import { isPageReady, timeoutAsync, waitAsync, editSlider, fillCheckbox } from "./pageFill";
 import { walletsFront2 } from "./../../configs/wallets";
 export function getCoinsListObj(coinsList: string, market: string): CoinsList | null {
+  const coinsListMap = {
+    safe: "GOLD DEF",
+  };
   let coinsName: string | null = null;
   switch (coinsList) {
     case "safe":
