@@ -70,25 +70,34 @@ async function removeFilter(filterVal: string) {
 
 const stopLossNotesText = "Stop-loss установлен";
 async function setStop(stopVal: string, isRemove: boolean) {
+  const notes = ($("#botNotes").val() as string) || "";
+  const text = `${stopLossNotesText} - ${stopVal}%`;
   if (isRemove === false) {
     await removeFilter("stop_loss:rate:change");
     await removeFilter("stop_loss:exit:bool");
-    const newText = (($("#botNotes").val() as string) || "")?.replace(stopLossNotesText, "");
+    const newText = notes.includes("%") ? notes.replace(text, "") : notes.replace(stopLossNotesText, "");
     setValue($("#botNotes"), newText);
   } else if (stopVal != "") {
     await setFilter("stop_loss:rate:change", "==", stopVal);
-    setValue($("#botNotes"), stopLossNotesText);
+    if (!notes.includes(text)) {
+      setValue($("#botNotes"), `${notes}; ${text}`);
+    }
   }
 }
+const tempStopLossNotesText = "Временной stop-loss установлен";
 async function setTempStop(stopVal: string, isRemove: boolean) {
+  const text = `${tempStopLossNotesText} - ${stopVal} мин`;
+  const notes = ($("#botNotes").val() as string) || "";
   if (isRemove === false) {
     await removeFilter("stop_loss:timeout:time");
     await removeFilter("stop_loss:exit:bool");
-    const newText = (($("#botNotes").val() as string) || "")?.replace(stopLossNotesText, "");
+    const newText = notes.includes("мин") ? notes.replace(text, "") : notes.replace(stopLossNotesText, "");
     setValue($("#botNotes"), newText);
   } else if (stopVal != "") {
     await setFilter("stop_loss:timeout:time", "==", stopVal);
-    setValue($("#botNotes"), stopLossNotesText);
+    if (!notes.includes(text)) {
+      setValue($("#botNotes"), `${notes}; ${text}`);
+    }
   }
 }
 async function setPumpDamp(filterName: string) {
@@ -244,16 +253,26 @@ async function editBotAsync({
 }
 function subscribeHelpClick() {
   const heplTextMap: Record<string, string> = {
-    awada_cancel_q:
+    avada_cancel_q:
       "Бот состоит из открытой позиции, тейк-профит ордера" +
       " и страховочных ордеров для усреднения. Если позицию" +
       " закрываем руками на бирже, то ордера можно закрыть с помощью этой функции.",
-    awada_stop_q: "После отмены ордеров, бот не будет открывать новые позиции.",
-    awada_mark_q:
+    avada_stop_q: "После отмены ордеров, бот не будет открывать новые позиции.",
+    avada_mark_q:
       "Использовать, чтобы бот забыл свой активный цикл и начал новый цикл." +
       " Если позицию и ордера закрыли руками, то пометив цикл отменённым," +
       " бот не будет привязан к этой позиции и ордерам.",
-    awada_wallet_q: "Размер депозита, которым будет оперировать бот (без учёта плеча).",
+    avada_wallet_q: "Размер депозита, которым будет оперировать бот (без учёта плеча).",
+    avada_flexStop_q:
+      "выставляет Stop-loss, при просадке цены в % который укажем (от первого ордера). После применения не забываем убрать Stop-loss, чтобы в следующем цикле не сработал.",
+    avada_shortStop_q:
+      "выставляет Stop-loss при просадке 12% от первого ордера. После применения не забываем убрать Stop-loss, чтобы в следующем цикле не сработал.",
+    avada_longStop_q:
+      "выставляет Stop-loss при просадке 25% от первого ордера. После применения не забываем убрать Stop-loss, чтобы в следующем цикле не сработал.",
+    avada_tempStop_q:
+      "закроет позицию через указанное время (указываем в минутах). К тому времени убыток по PNL может быть меньше. После применения не забываем убрать Stop-loss, чтобы в следующем цикле не сработал.",
+    avada_pumpDimp_q: "Уменьшают шанс напороться на PUMP/DUMP.",
+    avada_closePos_q: "Закрывает позицию с ордерами на бирже.",
   };
   $("#avada_help_div").click(() => {
     $("#avada_help_div").remove();

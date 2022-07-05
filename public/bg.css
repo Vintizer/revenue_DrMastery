@@ -158,21 +158,45 @@
   justify-content: space-between;
   padding: 1rem;
 }
-#awada_wallet_q {
+#avada_wallet_q {
   right: 200px;
   top: 122px
 }
-#awada_cancel_q {
+#avada_cancel_q {
   right: 200px;
   top: 190px
 }
-#awada_stop_q {
+#avada_stop_q {
   right: 200px;
   top: 219px
 }
-#awada_mark_q {
+#avada_mark_q {
   right: 200px;
   top: 247px
+}
+#avada_flexStop_q {
+  right: 20px;
+  top: 100px
+}
+#avada_shortStop_q {
+  right: 100px;
+  top: 150px
+}
+#avada_longStop_q {
+  right: 100px;
+  top: 200px
+}
+#avada_tempStop_q {
+  right: 5px;
+  top: 250px
+}
+#avada_pumpDimp_q {
+  right: 100px;
+  top: 300px
+}
+#avada_closePos_q {
+  right: 100px;
+  top: 350px
 }
 /* span.show-title-avada:after {
   content: attr(title);

@@ -16,6 +16,7 @@ export function getInsuranceModal() {
                         <label for="removeLongStop">Убрать</label>
                     </li>
                 </ul>
+                 <span class="q rb-btn-popover-question avada_question" id="avada_longStop_q"></span>
             </div>
         </article>
         `;
@@ -37,6 +38,7 @@ export function getInsuranceModal() {
                         <label for="removeShortStop">Убрать</label>
                     </li>
                 </ul>
+                 <span class="q rb-btn-popover-question avada_question" id="avada_shortStop_q"></span>
             </div>
         </article>
         `;
@@ -61,6 +63,7 @@ export function getInsuranceModal() {
                         <label for="removeFlexStop">Убрать</label>
                     </li>
                 </ul>
+                 <span class="q rb-btn-popover-question avada_question" id="avada_flexStop_q"></span>
             </div>
         </article>
         `;
@@ -74,7 +77,7 @@ export function getInsuranceModal() {
                 </div>
                 <ul class="selector">
                     <li>
-                        <input type="text" id="tempStopPercent" placeholder="% stop loss" size="12"/>
+                        <input type="text" id="tempStopPercent" placeholder="минуты" size="12"/>
                     </li>
                     <li>
                         <input type="radio" id="setTempStop" name="tempStop" />
@@ -85,6 +88,7 @@ export function getInsuranceModal() {
                         <label for="removeTempStop">Убрать</label>
                     </li>
                 </ul>
+                 <span class="q rb-btn-popover-question avada_question" id="avada_tempStop_q"></span>
             </div>
         </article>
         `;
@@ -105,15 +109,12 @@ export function getInsuranceModal() {
                         <input type="radio" id="setPumpDumpV2" name="pumpDump"/>
                         <label for="setPumpDumpV2">V2</label>
                     </li>
-                    <li class="pumpDump">
-                        <input type="radio" id="setPumpDumpV3" name="pumpDump"/>
-                        <label for="setPumpDumpV3">V3</label>
-                    </li>
                     <li>
                         <input type="radio" id="removePumpDump" name="pumpDump" />
                         <label for="removePumpDump">Убрать</label>
                     </li>
                 </ul>
+                 <span class="q rb-btn-popover-question avada_question" id="avada_pumpDimp_q"></span>
             </div>
         </article>
         `;
@@ -135,6 +136,7 @@ export function getInsuranceModal() {
                         <label for="notStopClosePos">Не останавливать</label>
                     </li>
                 </ul>
+                 <span class="q rb-btn-popover-question avada_question" id="avada_closePos_q"></span>
             </div>
         </article>
         `;
