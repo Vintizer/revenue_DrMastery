@@ -7,42 +7,18 @@ import { isPageReady, timeoutAsync, waitAsync, editSlider, fillCheckbox } from "
 import { walletsFront2 } from "./../../configs/wallets";
 export function getCoinsListObj(coinsList: string, market: string): CoinsList | null {
   const coinsListMap = {
-    safe: "GOLD DEF",
+    safe: "safe",
+    standart: "standart",
+    aggressive: "aggressive",
+    aggressivex50: "aggressivex50",
+    "binance-safe": "safe",
+    "binance-standart": "standart",
+    "binance-aggressive": "aggressive",
+    "binance-aggressivex50": "aggressivex50",
+    "bybit-safe": "safe",
+    "bybit-aggressive": "aggressive",
   };
-  let coinsName: string | null = null;
-  switch (coinsList) {
-    case "safe":
-      coinsName = "GOLD DEF";
-      break;
-    case "standart":
-      coinsName = "GOLD MID";
-      break;
-    case "aggressive":
-      coinsName = "GOLD";
-      break;
-    case "aggressivex50":
-      coinsName = "GOLDx50";
-      break;
-    case "binance-safe":
-      coinsName = "GOLD DEF";
-      break;
-    case "binance-standart":
-      coinsName = "GOLD MID";
-      break;
-    case "binance-aggressive":
-      coinsName = "GOLD";
-      break;
-    case "binance-aggressivex50":
-      coinsName = "GOLDx50";
-      break;
-    case "bybit-safe":
-      coinsName = "GOLD DEF";
-      break;
-    case "bybit-aggressive":
-      coinsName = "GOLD";
-      break;
-  }
-  return coinsLists[market]?.find((c) => c.name === coinsName) || null;
+  return coinsLists[market]?.find((c) => c.name === coinsListMap[coinsList]) || null;
 }
 function getCoinsName(coinsList: string, market: string): string | null {
   return getCoinsListObj(coinsList, market)?.name || null;
@@ -150,13 +126,13 @@ export async function createBotsAsync({
     isStartFilters: actualStrategy?.filterPart.isStartFilters,
     startFilters: actualStrategy?.filterPart.startFilters,
   };
-  const isPartSet: boolean = await createBotAsync(botValues);
-  const isPart: boolean | null = actualStrategy?.mainPart.isPartOrders;
-  const partOrders: string | null = actualStrategy?.mainPart.partOrders;
-  if (!isPartSet && isPart != null && partOrders != null) {
-    await setPart(isPart, partOrders);
-  }
-  for (let i = 0; i < botsCount - 1; i++) {
-    await cloneBotAsync();
-  }
+  // const isPartSet: boolean = await createBotAsync(botValues);
+  // const isPart: boolean | null = actualStrategy?.mainPart.isPartOrders;
+  // const partOrders: string | null = actualStrategy?.mainPart.partOrders;
+  // if (!isPartSet && isPart != null && partOrders != null) {
+  //   await setPart(isPart, partOrders);
+  // }
+  // for (let i = 0; i < botsCount - 1; i++) {
+  //   await cloneBotAsync();
+  // }
 }

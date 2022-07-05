@@ -67,9 +67,9 @@ export function getCreateModal() {
                 <label>Список монет</label>
                 <select name="select" id="coinsList">
                   <option selected value="">----</option>
-                  <option value="safe">Безопасный(x20)</option>
-                  <option value="aggressive">Агрессивный(x20)</option>
-                  <option value="aggressivex50">Агрессивный(x50)</option>
+                  <option value="binance-safe">Безопасный(x20)</option>
+                  <option value="binance-aggressive">Агрессивный(x20)</option>
+                  <option value="binance-aggressivex50">Агрессивный(x50)</option>
                 </select>
               </div>
             </div>
